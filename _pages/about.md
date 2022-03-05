@@ -14,9 +14,11 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 I'm a research associate with the University of Liverpool working on signal processing, Bayesian modeling, and inference.
-I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and used to work on medical imaging, computer systems, and high-performance computing.
+I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at Samsung Medical Center, South Korea, as an undergraduate researcher.
+I also worked part-time as an embedded software engineer at Hansono, South Korea.
+I hold memberships in both the ACM and the IEEE (which implies that I'm a good tipper...)
 
-I'm also interested in topics such as high-performance computing, parallel computing, computer systems, computational statistics, programming languages, optimization, and image processing.
+Previously, I used to work on medical imaging, computer systems, and high-performance computing, but I'm also interested in topics such as high-performance computing, parallel computing, computer systems, computational statistics, programming languages, optimization, and image processing.
 [Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
 
 
