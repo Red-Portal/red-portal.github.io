@@ -2,24 +2,35 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: 
 
 profile:
   align: right
-  image: prof_pic.jpg
-  address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  image: profile_diffusion.png
 
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I'm a research associate with the University of Liverpool working on signal processing, Bayesian modeling and inference.
+I'm a research associate with the University of Liverpool working on signal processing, Bayesian modeling, and inference.
+I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and used to work on medical imaging, computer systems, and high-performance computing.
 
-Previously, I used to work on medical imaging, computer systems, and high-performance computing.
+I'm also interested in topics such as high-performance computing, parallel computing, computer systems, computational statistics, programming languages, optimization, and image processing.
+[Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
+
+
+#### productivity tools that I use
+(Last updated in March 5 2022)<br />
+I heavily use cross-platform opensource software tools.
+* [Emacs](https://www.gnu.org/software/emacs/) (heavily [customized](https://github.com/Red-Portal/.emacs.d)) for writing **code**
+  * [Magit](https://magit.vc/) for accessing **Git** within Emacs
+* [Zotero](https://www.zotero.org/) for managing **citations** and exporting bibtex
+* [Inkscape](https://inkscape.org/) for drawing vector **diagrams** (but also Tikz if not in a rush)
+* [Veusz](https://veusz.github.io/) for quick publication quality **plots** (but also PGFplots if not in a rush)
+* [Master PDF](https://code-industry.net/masterpdfeditor/) for viewing, editing, and annotating **PDF** files
+* [Nomacs](https://nomacs.org/) for viewing a lot of **image files** quickly (on Windows, [FastStone](https://www.faststone.org/) is hard to beat)
+* [Flameshot](https://flameshot.org/) for taking **screenshots**
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder. -->
 
