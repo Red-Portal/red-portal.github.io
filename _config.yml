@@ -82,7 +82,7 @@ panelbear_analytics:  # panelbear analytics site ID (format: XXXXXXXXX)
 # -----------------------------------------------------------------------------
 
 blog_name: Kyurae Kim's Blog  # your blog must have a name for it to show up in the nav bar
-blog_description: Stuff I wrote that didn't end up in a paper
+blog_description: Stuff that didn't end up in a paper
 permalink: /blog/:year/:title/
 
 # Pagination
@@ -210,7 +210,7 @@ scholar:
 
   source: /_bibliography/
   bibliography: papers.bib
-  bibliography_template: bib
+  bibliography_template: my_publications_bib
   # Note: if you have latex math in your bibtex, the latex filter
   # preprocessing may conflict with MathJAX if the latter is enabled.
   # See https://github.com/alshedivat/al-folio/issues/357.
