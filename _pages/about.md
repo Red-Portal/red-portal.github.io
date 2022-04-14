@@ -14,6 +14,7 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 I'm a research associate with the University of Liverpool, United Kingdom, working on signal processing, Bayesian modeling, and inference.
+I'll soon start pursuing a Ph.D. in Computer Science with the University of Pennsylvania starting from Fall 2022.
 I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at Samsung Medical Center, South Korea, as an undergraduate researcher.
 I also worked part-time as an embedded software engineer at Hansono, South Korea.
 I hold memberships in both the ACM and the IEEE (which implies that I'm a good tipper...)
