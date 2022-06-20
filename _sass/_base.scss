@@ -6,6 +6,7 @@
 
 p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
   color: var(--global-text-color);
+  // font-family: $font-family;
 }
 
 hr {
@@ -89,7 +90,7 @@ blockquote {
   .address {
     margin-bottom: 5px;
     margin-top: 5px;
-    font-family: monospace;
+    font-family: 'Helvetica Neue';
     p {
       display: inline-block;
       margin: 0;

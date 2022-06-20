@@ -23,7 +23,7 @@ Previously, I used to work on medical imaging, computer systems, and high-perfor
 [Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
 
 
-#### productivity tools that I use
+#### **productivity tools that I use**
 (Last updated in April 11 2022)<br />
 I heavily use cross-platform opensource software tools.
 * [Emacs](https://www.gnu.org/software/emacs/) (heavily [customized](https://github.com/Red-Portal/.emacs.d)) for writing **code**

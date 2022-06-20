@@ -2,8 +2,10 @@
   <!-- MathJax -->
   <script type="text/javascript">
     window.MathJax = {
+      loader: {load: ['[tex]/upgreek']},
       tex: {
-        tags: 'ams'
+        tags: 'ams',
+        packages: {'[+]': ['upgreek']}
       }
     };
   </script>
