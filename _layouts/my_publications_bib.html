@@ -1,8 +1,11 @@
 ---
 ---
 <!-- _layouts/bib.html -->
+<div class="container">
+
       <div class="row">
-        <div class="col-sm-4 col-xs-12 abbr">
+        <!-- <div class="col-sm-12 col-xs-12 abbr"> -->
+        <div class="col-4 abbr">
         <!-- {%- if entry.abbr -%} -->
         <!--   {%- if site.data.venues[entry.abbr] -%} -->
         <!--   <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr> -->
@@ -11,13 +14,14 @@
         <!--   {%- endif -%} -->
         <!-- {%- endif -%} -->
 
-        {%- if entry.teaser -%}
-        {% include figure.html path=entry.teaser class="img-responsive rounded z-depth-1" zoomable=true %}
-        {%- endif -%}
+	  {%- if entry.teaser -%}
+	  {% include figure.html path=entry.teaser class="img-fluid rounded z-depth-1" zoomable=true %}
+	  {%- endif -%}
         </div>
 
         <!-- Entry bib key -->
-        <div id="{{entry.key}}" class="col-sm-8 col-xs-12">
+        <!-- <div id="{{entry.key}}" class="col-sm-12 col-xs-12" > -->
+        <div id="{{entry.key}}" class="col-8" >
         {% if entry.type == "thesis" -%}
           {{reference}}
         {%- else %}
@@ -159,4 +163,5 @@
           </div>
           {%- endif %}
         </div>
+      </div>
       </div>
