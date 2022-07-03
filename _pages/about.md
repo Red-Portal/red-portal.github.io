@@ -13,13 +13,13 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I'm a research associate with the University of Liverpool, United Kingdom, working on signal processing, Bayesian modeling, and inference.
-I'll soon start pursuing a Ph.D. in Computer Science with the University of Pennsylvania starting from Fall 2022.
-I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at Samsung Medical Center, South Korea, as an undergraduate researcher.
+I am a PhD student at the University of Pennsylvania working on Bayesian machine learning, Bayesian inference, and Bayesian optimization.
+I am also fortunate to be advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/).
+I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at the University of Liverpool as a research associate, at Samsung Medical Center, South Korea, as an undergraduate researcher.
 I also worked part-time as an embedded software engineer at Hansono, South Korea.
 I hold memberships in both the ACM and the IEEE (which implies that I'm a good tipper...)
 
-Previously, I used to work on medical imaging, computer systems, and high-performance computing, but I'm also broadly interested in topics such as computational statistics, programming languages, optimization, and image processing.
+Previously, I used to work on medical imaging, computer systems, high-performance computing, and array signal processing, but I'm also broadly interested in topics such as computational statistics, programming languages, optimization, and image processing.
 [Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
 
 
@@ -36,7 +36,6 @@ I heavily use cross-platform opensource software tools.
 * [Flameshot](https://flameshot.org/) for taking **screenshots**
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder. -->
-
 
 <!-- Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically. -->
 
