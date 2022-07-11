@@ -54,7 +54,7 @@ One thing that I admire about the statisticians is that they are much less narro
 Both computer science (CS) and electronics engineering (EE) tend to have a very rigid in comparison.
 Statisticians tend to publish opinion pieces, rants, and even interviews! in their journals, which cannot be imagined in CS and EE.
 Academic publishing initially started from hand written letters, which shows the sole purpose of academic papers: communicating ideas and discoveries.
-After all, many academic journals are, in principle, magazines (hence the prestigious [IEEE Signal Processing Magazine](https://signalprocessingsociety.org/publications-resources/ieee-signal-processing-magazine)) or a collection of correspondances (hence the name "transactions" or "letters").
+After all, many academic journals are, in principle, magazines (hence the prestigious [IEEE Signal Processing Magazine](https://signalprocessingsociety.org/publications-resources/ieee-signal-processing-magazine)) or a collection of correspondences (hence the name "transactions" or "letters").
 As long we can convey some form of intellectual value, I hope we could employ diverse ways of communication, not just the stereotypical "introduction-background-method-experiment-conclusion".
 
 ### Was Charles Stein a Bayesian?
