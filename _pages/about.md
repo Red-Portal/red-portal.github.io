@@ -18,7 +18,7 @@ I acquired my Bachelor in Engineering degree at Sogang University, South Korea, 
 I also worked part-time as an embedded software engineer at Hansono, South Korea.
 I hold memberships in both the ACM and the IEEE (which implies that I'm a good tipper...)
 
-Previously, I used to work on medical imaging, computer systems, high-performance computing, and array signal processing, but I'm also broadly interested in topics such as computational statistics, programming languages, optimization, and image processing.
+Previously, I used to work on medical imaging, computer systems, high-performance computing, and array signal processing, but I'm also broadly interested in topics such as computational statistics, programming languages, and optimization.
 [Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
 
 
