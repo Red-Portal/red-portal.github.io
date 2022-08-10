@@ -14,7 +14,7 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 I am a PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian machine learning, Bayesian inference, and Bayesian optimization.
-I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at the University of Liverpool as a research associate, at Samsung Medical Center, South Korea, as an undergraduate researcher.
+I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at Samsung Medical Center, South Korea, as an undergraduate researcher, Kangbuk Samsung Hospital, South Korea, as a visiting researcher, and the University of Liverpool as a research associate.
 I also worked part-time as an embedded software engineer at Hansono, South Korea.
 I hold memberships in both the ACM and the IEEE (which implies that I'm a good tipper...)
 
