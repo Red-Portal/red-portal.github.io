@@ -49,13 +49,13 @@ Both of these have created their own fields and have now become active, promisin
 During self-isolation, I stumbled upon this paper called [A Conversation with Charles Stein](https://www.jstor.org/stable/2245793?seq=1) {% cite degroot_conversation_1986 --file references %}, which is more or less a transcript of an interview with Charles Stein by Morris DeGroot (also a very famous statistician), that was published in Statistical Science.
 The interview has been published in 1986, which seems to be around Charles Stein retired, but amazingly enough, Charles lived until 2016!
 
-### An Interview Published in an Academic Journal?
-One thing that I admire about the statisticians is that they are much less narrow-viewed on what constitutes an academic paper.
-Both computer science (CS) and electronics engineering (EE) tend to have a very rigid in comparison.
-Statisticians tend to publish opinion pieces, rants, and even interviews! in their journals, which cannot be imagined in CS and EE.
-Academic publishing initially started from hand written letters, which shows the sole purpose of academic papers: communicating ideas and discoveries.
-After all, many academic journals are, in principle, magazines (hence the prestigious [IEEE Signal Processing Magazine](https://signalprocessingsociety.org/publications-resources/ieee-signal-processing-magazine)) or a collection of correspondences (hence the name "transactions" or "letters").
-As long we can convey some form of intellectual value, I hope we could employ diverse ways of communication, not just the stereotypical "introduction-background-method-experiment-conclusion".
+<!-- ### An Interview Published in an Academic Journal? -->
+<!-- One thing that I admire about the statisticians is that they are much less narrow-viewed on what constitutes an academic paper. -->
+<!-- Both computer science (CS) and electronics engineering (EE) tend to have a very rigid in comparison. -->
+<!-- Statisticians tend to publish opinion pieces, rants, and even interviews! in their journals, which cannot be imagined in CS and EE. -->
+<!-- Academic publishing initially started from hand written letters, which shows the sole purpose of academic papers: communicating ideas and discoveries. -->
+<!-- After all, many academic journals are, in principle, magazines (hence the prestigious [IEEE Signal Processing Magazine](https://signalprocessingsociety.org/publications-resources/ieee-signal-processing-magazine)) or a collection of correspondences (hence the name "transactions" or "letters"). -->
+<!-- As long we can convey some form of intellectual value, I hope we could employ diverse ways of communication, not just the stereotypical "introduction-background-method-experiment-conclusion". -->
 
 ### Was Charles Stein a Bayesian?
 
@@ -155,9 +155,9 @@ But seriously, interesting to know that Lindley thought this way.
 >
 > **DeGroot**: Thank you, Charles
 
-Indeed, speaking and listening to each others' opinion freely without prejudice is becoming more and more difficult.
-I believe different opinions are especially valuable since they broaden one's view.
-It is ironic that, on this day and age where everyone is connected in the speed of light, echochambers and self-reinforcement of opinions is becoming a bigger problem, especially in my home country South Korea.
+<!-- Indeed, speaking and listening to each others' opinion freely without prejudice is becoming more and more difficult. -->
+<!-- I believe different opinions are especially valuable since they broaden one's view. -->
+<!-- It is ironic that, on this day and age where everyone is connected in the speed of light, echochambers and self-reinforcement of opinions is becoming a bigger problem, especially in my home country South Korea. -->
 
 ## Conclusions
 
