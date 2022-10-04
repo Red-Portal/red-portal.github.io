@@ -18,7 +18,7 @@ Although this "intuitive" explanation has been somewhat scientifically disputed 
 I do not now where the scientific concensus is now on this subject.
 Because of this, I have never got too deep into this topic, and I only knew the attribution to Keskar *et al.*
 However, it turned out that J. Schmidhuber and S. Hochreiter came up with this idea in... 1994!
-Hell, they even have a paper named ``Flat minima'' {% cite hochreiter_flat_1997 --file references %}.
+Hell, they even have a paper named "Flat minima" {% cite hochreiter_flat_1997 --file references %}.
 Even better, one of their paper on the topic had been presented at NIPS'94 {% cite hochreiter_simplifying_1994 --file references %}.
 To me personally, this sets a whole new standard on being *Schmidhubered*...
 (Fortunately though, the two papers by Schmidhuber co. did and still does get properly cited.)
