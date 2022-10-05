@@ -21,7 +21,7 @@ However, it turned out that J. Schmidhuber and S. Hochreiter came up with this i
 Hell, they even have a paper named "Flat minima" {% cite hochreiter_flat_1997 --file references %}.
 Even better, one of their paper on the topic had been presented at NIPS'94 {% cite hochreiter_simplifying_1994 --file references %}.
 To me personally, this sets a whole new standard on being *Schmidhubered*...
-(Fortunately though, the two papers by Schmidhuber co. did and still does get properly cited.)
+(Fortunately though, the two papers by Schmidhuber co. did and still do get properly cited.)
 
 References
 ----------
