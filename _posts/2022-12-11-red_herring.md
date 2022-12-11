@@ -11,7 +11,7 @@ scholar:
 ---
 
 ## Will Conformal Prediction Replace Bayesian Inference?
-With the rise of [conformal prediction](https://www.youtube.com/watch?v=kSGP4F_ZcBY), I am hearing doubts being raised about the Bayesian approach to machine learning.
+With the rise of [conformal prediction](https://www.youtube.com/watch?v=kSGP4F_ZcBY), I am hearing doubts about the Bayesian approach to machine learning.
 This is especially true for Bayesian deep learning, where the Bayesian approach is barely making progress to provide a computationally-feasible baseline for predictive uncertainty quantification.
 
 ## Uncertainty Quantification is a Red Herring
