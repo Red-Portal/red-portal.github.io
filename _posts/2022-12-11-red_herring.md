@@ -54,8 +54,8 @@ However, with the computational power of Google, Andrew G. Wilson's group has sh
 
 ### Conclusions
 Nonetheless, conformal predictions seem to be a promising approach for obtaining predictive uncertainty estimates.
-And this is fine!
-Bayesian machine learning has its unique agenda.
+And this is fine; Bayesian machine learning has its unique agenda.
+So keep drinking the Bayesian Kool-Aid!
 
 
 References
