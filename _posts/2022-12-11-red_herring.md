@@ -46,7 +46,7 @@ Personally, whenever a non-Bayesian model receives the Bayesian treatment, I exp
 In general, I don't care about the predictive uncertainty, I just expect those numbers to go up!
 
 My favorite examples of this are the classic matrix factorization algorithms.
-For example, Bayesian principled component analysis {% cite bishop_bayesian_1998 --file references %} and Bayesian non-negative matrix factorization {% cite schmidt_bayesian_2009 --file references %} have shown to be a straight upgrade from their original maximum-likelihood variant.
+For example, Bayesian principled component analysis {% cite bishop_bayesian_1998 --file references %} and Bayesian non-negative matrix factorization {% cite schmidt_bayesian_2009 --file references %} have shown to be straight upgrades from their original maximum-likelihood variants.
 This has also been shown for neural networks by non-other than Radford Neal himself {% cite neal_classification_2006 --file references %}.
 
 For modern deep neural networks, it took some time to figure out whether such improvement could be obtained.
