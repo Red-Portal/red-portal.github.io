@@ -16,20 +16,20 @@ social: true  # includes social icons at the bottom of the page
 I am a PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian machine learning, Bayesian inference, and Bayesian optimization.
 I acquired my Bachelor in Engineering degree at Sogang University, South Korea, and previously worked at Samsung Medical Center, South Korea, as an undergraduate researcher, at Kangbuk Samsung Hospital, South Korea, as a visiting researcher, and at the University of Liverpool as a research associate.
 I also worked part-time as an embedded software engineer at Hansono, South Korea.
-I hold memberships in both the ACM and the IEEE (which implies that I'm a good tipper...)
+I hold memberships in the ACM, ISBA, and the IEEE (which implies that I'm a good tipper...)
 
 Previously, I used to work on medical imaging, computer systems, high-performance computing, and array signal processing, but I'm also broadly interested in topics such as computational statistics, programming languages, and optimization.
 [Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
 
 
 #### **productivity tools that I use**
-(Last updated in April 11 2022)<br />
+(Last updated in Dec 11 2022)<br />
 I heavily use cross-platform opensource software tools.
 * [Emacs](https://www.gnu.org/software/emacs/) (heavily [customized](https://github.com/Red-Portal/.emacs.d)) for writing **code**
   * [Magit](https://magit.vc/) for accessing **Git** within Emacs
 * [Zotero](https://www.zotero.org/) for managing **citations** and exporting bibtex
 * [Inkscape](https://inkscape.org/) for drawing vector **diagrams** (but also Tikz if not in a rush)
-* [Veusz](https://veusz.github.io/) for quick publication quality **plots** (but also PGFplots if not in a rush)
+* [Veusz](https://veusz.github.io/) for quick publication quality **plots** (but also PGFplots, [Makie.jl](https://docs.makie.org/stable/) for fancier stuff).
 * [sioyek](https://sioyek.info/) for viewing and [Master PDF](https://code-industry.net/masterpdfeditor/) for editing, and annotating **PDF** files.
 * [Nomacs](https://nomacs.org/) for viewing a lot of **image files** quickly (on Windows, [FastStone](https://www.faststone.org/) is hard to beat)
 * [Flameshot](https://flameshot.org/) for taking **screenshots**
