@@ -41,7 +41,7 @@ $$
 \end{equation}
 $$
 Here, $$p(\theta \mid \mathcal{D})$$ automatically takes the *parameter uncertainty* into account, essentially regularizing the prediction.
-Thus, Assuming the model is sound, fully Bayesian predictions should improve the predictive accuracy compared to naive point estimates.
+Thus, assuming the model is sound, fully Bayesian predictions should improve the predictive accuracy compared to naive point estimates.
 Personally, whenever a non-Bayesian model receives the Bayesian treatment, I expect the **predictive accuracy to improve**.
 In general, I don't care about the predictive uncertainty, I just expect those numbers to go up!
 
