@@ -10,26 +10,28 @@ scholar:
   bibliography_template: post_bib
 ---
 
+## Will Conformal Prediction Replace Bayesian Inference?
 With the rise of [conformal prediction](https://www.youtube.com/watch?v=kSGP4F_ZcBY), I am hearing doubts being raised about the Bayesian approach to machine learning.
 This is especially true for Bayesian deep learning, where the Bayesian approach is barely making progress to provide a computationally-feasible baseline for predictive uncertainty quantification.
 
+## Uncertainty Quantification is a Red Herring
 The problem I have with these "doubts" about the future of Bayesian machine learning is that they are founded on a false premise.
 For me, Bayesian machine learning was never about **predictive** uncertainty quantification.
-Okay, maybe the "ever" was a bit of a stretch.
-But I do mean that there has been too much focus on the predictive uncertainty quantification aspect of Bayesian machine learning, that it has completely overtaken the Bayesian cause.
+Okay, maybe the "never" is a bit of a stretch.
+But I do fell that there has been too much focus on the predictive uncertainty quantification aspect of Bayesian machine learning, that it has completely overtaken the Bayesian cause.
 
 For me, the Bayesian framework provides the following:
 
 * Uncertainty estimates of the *parameters*.
 * Uncertainty estimates of the *predictions*.
-* Data driven regularization through marginalization.
+* Data-driven regularization through marginalization.
 * Principled model comparison through Bayes factors.
 * Principled (with principles founded on probability theory) model design.
 * Automatic frequentist guarantees such as Bernstein-von Mises.
 
-Uncertainty quantification is just of these.
-Explaining what each bullet exactly mean would be be too long to qualify as a blog post.
-But let me discuss the third point "Data driven regularization through marginalization" as I believe it is especially important for machine learning.
+Uncertainty quantification is just one of these.
+Explaining what each bullet exactly means would be too long to qualify as a blog post.
+Neverthless, let me discuss the third point, "Data-driven regularization through marginalization," as I believe it is especially important for machine learning.
 In the Bayesian framework, one makes predictions $$p(y \mid \mathcal{D})$$ by marginalizing over the posterior $$p(\theta \mid \mathcal{D})$$ such as
 $$
 \begin{equation}
@@ -39,14 +41,15 @@ $$
 Here, $$p(\theta \mid \mathcal{D})$$ automatically takes the *parameter uncertainty* into account, essentially regularizing the prediction.
 Thus, Assuming the model is sound, fully Bayesian predictions should improve the predictive accuracy compared to naive point estimates.
 Personally, whenever a non-Bayesian model receives the Bayesian treatment, I expect the **predictive accuracy to improve**.
-In general, I don't care about the predictive accuracy, I just expect those numbers to go up!
+In general, I don't care about the predictive uncertainty, I just expect those numbers to go up!
 
-For modern deep neural networks, it took some time to figure out whetehr such improvement would be obtained.
+For modern deep neural networks, it took some time to figure out whether such improvement would be obtained.
 Indeed, with the computational power of Google, Andrew G. Wilson's group has shown that convolutional neural networks achieve better predictive performance {% cite izmailov_what_2021 --file references %}.
 
+## Conclusions
 Nonetheless, conformal prediction seem to be a promising approach for obtaining predictive uncertainty estimates.
 And this is fine!
-Bayesian machine learning has its own agenda.
+Bayesian machine learning has its unique agenda.
 
 
 References
