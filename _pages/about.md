@@ -24,7 +24,7 @@ Previously, I used to work on medical imaging, computer systems, high-performanc
 
 
 #### **productivity tools that I use**
-(Last updated in Dec 11 2022)<br />
+(Last updated in 31 August 2023)<br />
 I heavily use cross-platform opensource software tools.
 * [Emacs](https://www.gnu.org/software/emacs/) (heavily [customized](https://github.com/Red-Portal/.emacs.d)) for writing **code**
   * [Magit](https://magit.vc/) for accessing **Git** within Emacs
