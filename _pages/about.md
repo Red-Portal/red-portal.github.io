@@ -13,7 +13,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a first year PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian machine learning, Bayesian inference, and Bayesian optimization.
+I am a second year PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian machine learning, Bayesian inference, and Bayesian optimization.
 I acquired my Bachelor in Engineering degree at Sogang University, South Korea, during which I did undergraduate research under Professor [Hongseok Kim](https://nice.sogang.ac.kr/), [Tai-kyong Song](https://heart.sogang.ac.kr/), [Sungyong Park, and Youngjae Kim](https://discos.sogang.ac.kr/).
 During this time, I also worked at Samsung Medical Center, South Korea, as an undergraduate researcher, at Kangbuk Samsung Hospital, South Korea, as a visiting researcher, and at Hansono, South Korea, as a part-time embedded software engineer.
 After graduating, I was a research associate at the University of Liverpool under Professor [Simon Maskell](http://www.simonmaskell.com/) and [Jason F. Ralph](https://scholar.google.com/citations?user=q0xW5igAAAAJ&hl=en).
@@ -31,7 +31,7 @@ I heavily use cross-platform opensource software tools.
 * [Zotero](https://www.zotero.org/) for managing **citations** and exporting bibtex
 * [Inkscape](https://inkscape.org/) for drawing vector **diagrams** (but also Tikz if not in a rush)
 * [Veusz](https://veusz.github.io/) for quick publication quality **plots** (but also PGFplots, [Makie.jl](https://docs.makie.org/stable/) for fancier stuff).
-* [sioyek](https://sioyek.info/) for viewing and [Master PDF](https://code-industry.net/masterpdfeditor/) for editing, and annotating **PDF** files.
+* [Evince](https://wiki.gnome.org/Apps/Evince) for viewing and [Master PDF](https://code-industry.net/masterpdfeditor/) for editing, and annotating **PDF** files.
 * [Nomacs](https://nomacs.org/) for viewing a lot of **image files** quickly (on Windows, [FastStone](https://www.faststone.org/) is hard to beat)
 * [Flameshot](https://flameshot.org/) for taking **screenshots**
 
