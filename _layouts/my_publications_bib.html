@@ -5,7 +5,6 @@
 
       <div class="row">
         <!-- <div class="col-sm-12 col-xs-12 abbr"> -->
-        <div class="col-xs-12 col-md-5">
         <!-- {%- if entry.abbr -%} -->
         <!--   {%- if site.data.venues[entry.abbr] -%} -->
         <!--   <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr> -->
@@ -19,14 +18,16 @@
 	  {% include figure.html path=entry.teaser class="img-fluid rounded z-depth-1" zoomable=true %}
 	</div>
 	{%- endif -%}
+        
 
         <!-- Entry bib key -->
         <!-- <div id="{{entry.key}}" class="col-sm-12 col-xs-12" > -->
 	{%- if entry.teaser -%}
 	  <div id="{{entry.key}}" class="col-xs-12 col-md-7" >
 	{%- else -%}
-	    <div id="{{entry.key}}" class="col-xs-12 col-md-12" >
+  	  <div id="{{entry.key}}" class="col-xs-12 col-md-12" >
 	{%- endif -%}
+
 
         {% if entry.type == "thesis" -%}
           {{reference}}
