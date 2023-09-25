@@ -14,14 +14,21 @@
         <!--   {%- endif -%} -->
         <!-- {%- endif -%} -->
 
-	  {%- if entry.teaser -%}
+	{%- if entry.teaser -%}
+	<div class="col-xs-12 col-md-5">
 	  {% include figure.html path=entry.teaser class="img-fluid rounded z-depth-1" zoomable=true %}
-	  {%- endif -%}
+	</div>
+	{%- endif -%}
         </div>
 
         <!-- Entry bib key -->
         <!-- <div id="{{entry.key}}" class="col-sm-12 col-xs-12" > -->
-        <div id="{{entry.key}}" class="col-xs-12 col-md-7" >
+	{%- if entry.teaser -%}
+	  <div id="{{entry.key}}" class="col-xs-12 col-md-7" >
+	{%- else -%}
+	    <div id="{{entry.key}}" class="col-xs-12 col-md-12" >
+	{%- endif -%}
+
         {% if entry.type == "thesis" -%}
           {{reference}}
         {%- else %}
