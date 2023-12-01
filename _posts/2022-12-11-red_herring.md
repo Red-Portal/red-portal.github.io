@@ -37,7 +37,7 @@ Nevertheless, let me discuss the third point, "Data-driven regularization throug
 In the Bayesian framework, one makes predictions $$p(y \mid \mathcal{D})$$ by marginalizing over the posterior $$p(\theta \mid \mathcal{D})$$ such as
 $$
 \begin{equation}
-  p(y \mid \mathcal{D}) = \int p\left(y \mid \theta\right) p\left( \theta \mid \mathcal{D} \right) d\theta.
+  p(y \mid \mathcal{D}) = \int p\left(y \mid \theta\right) \, p\left( \theta \mid \mathcal{D} \right) \, \mathrm{d}\theta.
 \end{equation}
 $$
 Here, $$p(\theta \mid \mathcal{D})$$ automatically takes the *parameter uncertainty* into account, essentially regularizing the prediction.
