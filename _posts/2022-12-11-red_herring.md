@@ -27,7 +27,7 @@ For me, the Bayesian framework provides the following:
 * Data-driven regularization through marginalization.
 * Principled model comparison through Bayes factors.
 * Principled (with principles founded on probability theory) model design.
-* Automatic frequentist guarantees such as Bernstein-von Mises.
+* Decision-theoretic frequentist guarantees.
 
 Uncertainty quantification is just one of these.
 Explaining what each bullet exactly means would be too long to qualify as a blog post.
