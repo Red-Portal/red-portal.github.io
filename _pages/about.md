@@ -13,7 +13,9 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a second year PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian machine learning, Bayesian inference, and Bayesian optimization.
+I am a second year PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian inference, stochastic optimization, Markov chain Monte Carlo sampling, and Bayesian optimization.
+I work closely with Professor [Yi-An Ma](https://sites.google.com/view/yianma/home) and [Alain Oliviero Durmus](https://alain.perso.math.cnrs.fr/).
+
 I acquired my Bachelor in Engineering degree at Sogang University, South Korea, during which I did undergraduate research under Professor [Hongseok Kim](https://nice.sogang.ac.kr/), [Tai-kyong Song](https://heart.sogang.ac.kr/), [Sungyong Park, and Youngjae Kim](https://discos.sogang.ac.kr/).
 During this time, I also worked at Samsung Medical Center, South Korea, as an undergraduate researcher, at Kangbuk Samsung Hospital, South Korea, as a visiting researcher, and at Hansono, South Korea, as a part-time embedded software engineer.
 After graduating, I was a research associate at the University of Liverpool under Professor [Simon Maskell](http://www.simonmaskell.com/) and [Jason F. Ralph](https://scholar.google.com/citations?user=q0xW5igAAAAJ&hl=en).
