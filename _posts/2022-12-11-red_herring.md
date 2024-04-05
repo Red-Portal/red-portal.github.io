@@ -27,7 +27,7 @@ For me, the Bayesian framework provides the following:
 * Data-driven regularization through marginalization.
 * Principled model comparison through Bayes factors.
 * Principled (with principles founded on probability theory) model design.
-* Automatic frequentist guarantees such as Bernstein-von Mises.
+* Decision-theoretic performance guarantees.
 
 Uncertainty quantification is just one of these.
 Explaining what each bullet exactly means would be too long to qualify as a blog post.
@@ -37,7 +37,7 @@ Nevertheless, let me discuss the third point, "Data-driven regularization throug
 In the Bayesian framework, one makes predictions $$p(y \mid \mathcal{D})$$ by marginalizing over the posterior $$p(\theta \mid \mathcal{D})$$ such as
 $$
 \begin{equation}
-  p(y \mid \mathcal{D}) = \int p\left(y \mid \theta\right) p\left( \theta \mid \mathcal{D} \right) d\theta.
+  p(y \mid \mathcal{D}) = \int p\left(y \mid \theta\right) \, p\left( \theta \mid \mathcal{D} \right) \, \mathrm{d}\theta.
 \end{equation}
 $$
 Here, $$p(\theta \mid \mathcal{D})$$ automatically takes the *parameter uncertainty* into account, essentially regularizing the prediction.

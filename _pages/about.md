@@ -24,6 +24,10 @@ I hold memberships in the ACM, ISBA, and the IEEE (which implies that I'm a good
 Previously, I used to work on medical imaging, computer systems, high-performance computing, and array signal processing, but I'm also broadly interested in topics such as computational statistics, programming languages, and optimization.
 [Here](https://github.com/Red-Portal/ray-awesome-papers) is a list of papers that I found interesting over my career.
 
+#### **Software**
+I am active within Julia's computational statistics community as part of the Turing language [team](https://turinglang.org/v0.29/team/).
+* [AdvancedVI.jl](https://github.com/TuringLang/AdvancedVI.jl): A collection of variational inference algorithms. 
+* [MCMCTesting.jl](https://github.com/Red-Portal/MCMCTesting.jl): Correctness tests for MCMC algorithms.
 
 #### **productivity tools that I use**
 (Last updated in 31 August 2023)<br />
