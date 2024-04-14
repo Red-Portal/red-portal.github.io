@@ -30,14 +30,14 @@ I am active within Julia's computational statistics community as part of the Tur
 * [MCMCTesting.jl](https://github.com/Red-Portal/MCMCTesting.jl): Correctness tests for MCMC algorithms.
 
 #### **productivity tools that I use**
-(Last updated in 31 August 2023)<br />
+(Last updated in 14 April 2024)<br />
 I heavily use cross-platform opensource software tools.
 * [Emacs](https://www.gnu.org/software/emacs/) (heavily [customized](https://github.com/Red-Portal/.emacs.d)) for writing **code**
   * [Magit](https://magit.vc/) for accessing **Git** within Emacs
 * [Zotero](https://www.zotero.org/) for managing **citations** and exporting bibtex
 * [Inkscape](https://inkscape.org/) for drawing vector **diagrams** (but also Tikz if not in a rush)
 * [Veusz](https://veusz.github.io/) for quick publication quality **plots** (but also PGFplots, [Makie.jl](https://docs.makie.org/stable/) for fancier stuff).
-* [Evince](https://wiki.gnome.org/Apps/Evince) for viewing and [Master PDF](https://code-industry.net/masterpdfeditor/) for editing, and annotating **PDF** files.
+* [Evince](https://wiki.gnome.org/Apps/Evince) for viewing and [Foxit Reader](https://www.foxit.com/pdf-reader/) for editing, and annotating **PDF** files.
 * [Nomacs](https://nomacs.org/) for viewing a lot of **image files** quickly (on Windows, [FastStone](https://www.faststone.org/) is hard to beat)
 * [Flameshot](https://flameshot.org/) for taking **screenshots**
 
