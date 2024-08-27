@@ -26,8 +26,9 @@ Previously, I used to work on medical imaging, computer systems, high-performanc
 
 #### **Software**
 I am active within Julia's computational statistics community as part of the Turing language [team](https://turinglang.org/v0.29/team/).
-* [AdvancedVI.jl](https://github.com/TuringLang/AdvancedVI.jl): A collection of variational inference algorithms. 
-* [MCMCTesting.jl](https://github.com/Red-Portal/MCMCTesting.jl): Correctness tests for MCMC algorithms.
+* [AdvancedVI.jl](https://github.com/TuringLang/AdvancedVI.jl): Variational inference algorithms in Julia.
+* [SliceSampling.jl](https://github.com/TuringLang/SliceSampling.jl): Slice sampling MCMC algorithms in Julia. 
+* [MCMCTesting.jl](https://github.com/Red-Portal/MCMCTesting.jl): Correctness tests for MCMC algorithms in Julia.
 
 #### **productivity tools that I use**
 (Last updated in 14 April 2024)<br />
