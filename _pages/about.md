@@ -13,7 +13,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a third year PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian inference, stochastic optimization, Markov chain Monte Carlo sampling, and Bayesian optimization.
+I am a fourth year PhD student advised by Professor [Jacob R. Gardner](https://jacobrgardner.github.io/) at the University of Pennsylvania working on Bayesian inference, stochastic optimization, Markov chain Monte Carlo sampling, and Bayesian optimization.
 I collaborate with Professor [Yi-An Ma](https://sites.google.com/view/yianma/home), [Alain Oliviero Durmus](https://alain.perso.math.cnrs.fr/), and [Trevor Campbell](https://trevorcampbell.me/).
 
 I acquired my Bachelor in Engineering degree at Sogang University, South Korea, during which I did undergraduate research under Professor [Hongseok Kim](https://nice.sogang.ac.kr/), [Tai-kyong Song](https://heart.sogang.ac.kr/), [Sungyong Park, and Youngjae Kim](https://discos.sogang.ac.kr/).
