@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://red-portal.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://red-portal.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-09-18T15:27:12+00:00</updated><id>https://red-portal.github.io/feed.xml</id><title type="html">Kyurae Kim</title><subtitle>Kyurae Kim&apos;s blog.
+</subtitle><entry><title type="html">Uncertainty Quantification is the Red Herring of Bayesian Machine Learning</title><link href="https://red-portal.github.io/blog/2022/red_herring/" rel="alternate" type="text/html" title="Uncertainty Quantification is the Red Herring of Bayesian Machine Learning" /><published>2022-12-11T00:00:00+00:00</published><updated>2022-12-11T00:00:00+00:00</updated><id>https://red-portal.github.io/blog/2022/red_herring</id><content type="html" xml:base="https://red-portal.github.io/blog/2022/red_herring/"><![CDATA[<h3 id="will-conformal-predictions-replace-bayesian-inference">Will Conformal Predictions Replace Bayesian Inference?</h3>
+<p>With the rise of <a href="https://www.youtube.com/watch?v=kSGP4F_ZcBY">conformal predictions</a>, I hear doubts about the Bayesian approach to machine learning.
+This is especially true for Bayesian deep learning, where the Bayesian approach is barely making progress to provide a computationally-feasible baseline for predictive uncertainty quantification.</p>
+
+<h3 id="uncertainty-quantification-is-a-red-herring">Uncertainty Quantification is a Red Herring</h3>
+<p>The problem I have with these “doubts” about the future of Bayesian machine learning is that they are founded on a false premise.
+For me, Bayesian machine learning was never about <strong>predictive</strong> uncertainty quantification.
+Okay, maybe the “never” is a bit of a stretch.
+But I do feel that there has been too much focus on the predictive uncertainty quantification aspect of Bayesian machine learning that it has completely overtaken the Bayesian cause.</p>
+
+<p>For me, the Bayesian framework provides the following:</p>
+
+<ul>
+  <li>Uncertainty estimates of the <em>parameters</em>.</li>
+  <li>Uncertainty estimates of the <em>predictions</em>.</li>
+  <li>Data-driven regularization through marginalization.</li>
+  <li>Principled model comparison through Bayes factors.</li>
+  <li>Principled (with principles founded on probability theory) model design.</li>
+  <li>Decision-theoretic performance guarantees.</li>
+</ul>
+
+<p>Uncertainty quantification is just one of these.
+Explaining what each bullet exactly means would be too long to qualify as a blog post.
+Nevertheless, let me discuss the third point, “Data-driven regularization through marginalization,” as I believe it is especially important for machine learning.</p>
+
+<h3 id="going-bayesian-improves-accuracy">Going Bayesian Improves Accuracy</h3>
+<p>In the Bayesian framework, one makes predictions \(p(y \mid \mathcal{D})\) by marginalizing over the posterior \(p(\theta \mid \mathcal{D})\) such as
+\(\begin{equation}
+  p(y \mid \mathcal{D}) = \int p\left(y \mid \theta\right) \, p\left( \theta \mid \mathcal{D} \right) \, \mathrm{d}\theta.
+\end{equation}\)
+Here, \(p(\theta \mid \mathcal{D})\) automatically takes the <em>parameter uncertainty</em> into account, essentially regularizing the prediction.
+Thus, assuming the model is sound, fully Bayesian predictions should improve the predictive accuracy compared to naive point estimates.
+Personally, whenever a non-Bayesian model receives the Bayesian treatment, I expect the <strong>predictive accuracy to improve</strong>.
+In general, I don’t care about the predictive uncertainty, I just expect those numbers to go up!</p>
+
+<p>My favorite examples of this are the classic matrix factorization algorithms.
+For example, Bayesian principled component analysis <a class="citation" href="#bishop_bayesian_1998">(Bishop, 1998)</a> and Bayesian non-negative matrix factorization <a class="citation" href="#schmidt_bayesian_2009">(Schmidt et al., 2009)</a> have shown to be straight upgrades from their original maximum-likelihood variants.
+This has also been shown for neural networks by non-other than Radford Neal himself <a class="citation" href="#neal_classification_2006">(Neal, 2006)</a>.</p>
+
+<p>For modern deep neural networks, it took some time to figure out whether such improvement could be obtained.
+However, with the computational power of Google, Andrew G. Wilson’s group has shown that convolutional neural networks achieve better predictive performance <a class="citation" href="#izmailov_what_2021">(Izmailov et al., 2021)</a>.</p>
+
+<h3 id="conclusions">Conclusions</h3>
+<p>Nonetheless, conformal predictions seem to be a promising approach for obtaining predictive uncertainty estimates.
+And this is fine; Bayesian machine learning has its unique agenda.
+So keep drinking the Bayesian Kool-Aid!</p>
+
+<h2 id="references">References</h2>
+<ol class="bibliography"><li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="bishop_bayesian_1998">
+        
+          <!-- Title -->
+          <div class="title"><b>Bayesian PCA</b></div>
+          <!-- Author -->
+          <div class="author">Christopher Bishop.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Advances in Neural Information Processing Systems</em> 1998
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="schmidt_bayesian_2009">
+        
+          <!-- Title -->
+          <div class="title"><b>Bayesian Non-Negative Matrix Factorization</b></div>
+          <!-- Author -->
+          <div class="author">Mikkel N. Schmidt,&nbsp;Ole Winther,&nbsp;and Lars Kai Hansen.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Independent Component Analysis and Signal Separation</em> 2009
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="neal_classification_2006">
+        
+          <!-- Title -->
+          <div class="title"><b>Classification with Bayesian Neural Networks</b></div>
+          <!-- Author -->
+          <div class="author">Radford M. Neal.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Machine Learning Challenges: Evaluating Predictive Uncertainty, Visual Object Classification, and Recognising Tectual Entailment</em> 2006
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="izmailov_what_2021">
+        
+          <!-- Title -->
+          <div class="title"><b>What Are Bayesian Neural Network Posteriors Really Like?</b></div>
+          <!-- Author -->
+          <div class="author">Pavel Izmailov,&nbsp;Sharad Vikram,&nbsp;Matthew D Hoffman,&nbsp;and Andrew Gordon Gordon Wilson.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Proceedings of the 38th International Conference on Machine Learning</em>, Jul 2021
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+            <a href="http://proceedings.mlr.press/v139/izmailov21a/izmailov21a.pdf" class="btn btn-sm z-depth-0" role="button">PDF</a>
+          </div>
+
+          
+        </div>
+</li></ol>
+
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>]]></content><author><name></name></author><category term="Bayes" /><summary type="html"><![CDATA[Will Conformal Predictions Replace Bayesian Inference? With the rise of conformal predictions, I hear doubts about the Bayesian approach to machine learning. This is especially true for Bayesian deep learning, where the Bayesian approach is barely making progress to provide a computationally-feasible baseline for predictive uncertainty quantification.]]></summary></entry><entry><title type="html">Being Schmidhubered on Deep Learning and Flat Minimas</title><link href="https://red-portal.github.io/blog/2022/flat_minima_schmidhuber/" rel="alternate" type="text/html" title="Being Schmidhubered on Deep Learning and Flat Minimas" /><published>2022-10-04T00:00:00+00:00</published><updated>2022-10-04T00:00:00+00:00</updated><id>https://red-portal.github.io/blog/2022/flat_minima_schmidhuber</id><content type="html" xml:base="https://red-portal.github.io/blog/2022/flat_minima_schmidhuber/"><![CDATA[<p>Until very recently, the incredible generalization capabilities of deep neural networks have been attributed to <em>flat minimas</em>.
+That is, “flat minimas” generalize better because of the intuitive explanation that flatter minimas are more robust to perturbation (train dataset sampling).
+For some time, this discovery has been attributed to <a class="citation" href="#keskar_largebatch_2017">(Keskar et al., 2017)</a>, often accompanying their sketch of the intuition.</p>
+
+<p>Although this “intuitive” explanation has been somewhat scientifically disputed multiple times until now.
+I do not now where the scientific concensus is now on this subject.
+Because of this, I have never got too deep into this topic, and I only knew the attribution to Keskar <em>et al.</em>
+However, it turned out that J. Schmidhuber and S. Hochreiter came up with this idea in… 1994!
+Hell, they even have a paper named “Flat minima” <a class="citation" href="#hochreiter_flat_1997">(Hochreiter &amp; Schmidhuber, 1997)</a>.
+Even better, one of their paper on the topic had been presented at NIPS’94 <a class="citation" href="#hochreiter_simplifying_1994">(Hochreiter &amp; Schmidhuber, 1994)</a>.
+To me personally, this sets a whole new standard on being <em>Schmidhubered</em>…
+(Fortunately though, the two papers by Schmidhuber co. did and still do get properly cited.)</p>
+
+<h2 id="references">References</h2>
+<ol class="bibliography"><li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="keskar_largebatch_2017">
+        
+          <!-- Title -->
+          <div class="title"><b>On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</b></div>
+          <!-- Author -->
+          <div class="author">Nitish Shirish Keskar,&nbsp;Dheevatsa Mudigere,&nbsp;Jorge Nocedal,&nbsp;Mikhail Smelyanskiy,&nbsp;and Ping Tak Peter Tang.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Proceedings of the International conference on learning representations</em>, Feb 2017
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="hochreiter_flat_1997">
+        
+          <!-- Title -->
+          <div class="title"><b>Flat Minima</b></div>
+          <!-- Author -->
+          <div class="author">Sepp Hochreiter,&nbsp;and Jürgen Schmidhuber.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Neural Computation</em>, Jan 1997
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="hochreiter_simplifying_1994">
+        
+          <!-- Title -->
+          <div class="title"><b>Simplifying Neural Nets by Discovering Flat Minima</b></div>
+          <!-- Author -->
+          <div class="author">Sepp Hochreiter,&nbsp;and Jürgen Schmidhuber.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Advances in Neural Information Processing Systems</em>, Jan 1994
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li></ol>
+
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>]]></content><author><name></name></author><category term="DL" /><category term="DL" /><summary type="html"><![CDATA[Until very recently, the incredible generalization capabilities of deep neural networks have been attributed to flat minimas. That is, “flat minimas” generalize better because of the intuitive explanation that flatter minimas are more robust to perturbation (train dataset sampling). For some time, this discovery has been attributed to (Keskar et al., 2017), often accompanying their sketch of the intuition.]]></summary></entry><entry><title type="html">Was Charles Stein a Bayesian?</title><link href="https://red-portal.github.io/blog/2022/was_charles_stein_bayesian/" rel="alternate" type="text/html" title="Was Charles Stein a Bayesian?" /><published>2022-07-11T00:00:00+00:00</published><updated>2022-07-11T00:00:00+00:00</updated><id>https://red-portal.github.io/blog/2022/was_charles_stein_bayesian</id><content type="html" xml:base="https://red-portal.github.io/blog/2022/was_charles_stein_bayesian/"><![CDATA[<p>I recently contracted COVID (probably while watching the Rolling Stones perform at Hyde Park…) and therefore had to self-isolate.
+During this time, I was curious whether the legendary <a href="https://en.wikipedia.org/wiki/Charles_M._Stein">Charles M. Stein (1920-2016)</a> was a Bayesian, given his huge contribution to Bayesian statistics and machine learning.</p>
+
+<h2 id="charles-stein-and-the-bayesians">Charles Stein and The Bayesians</h2>
+<p>Although I do not consider myself to be a statistician, I regularly read statistics papers in order to renew my Bayesian membership card. (If anybody is wants to register too, please send me an email.)
+And Charles Stein has made various important contributions to the Bayesian cause.</p>
+
+<h3 id="james-stein-estimator">James-Stein Estimator</h3>
+<p>For example, the <a href="https://en.wikipedia.org/wiki/James%E2%80%93Stein_estimator">James-Stein estimator</a> <a class="citation" href="#stein_inadmissibility_1956">(Stein, 1956)</a>, although not directly a Bayesian idea, has a nice empirical Bayesian <a class="citation" href="#efron_stein_1973">(Efron &amp; Morris, 1973)</a> interpretation.
+(This would be part of a <a href="https://www.inference.vc/everything-that-works-works-because-its-bayesian-2/">running joke</a> that Bayesians tend to claim anything that works is actually a Bayesian method in disguise.)
+In more detail, James-Stein estimator has shown that some types of <em>biased</em> estimators can have quite dramatically less error than the maximum likelihood estimator under certain loss functions.
+This has directly motivated all kinds of regularized/shrinkage estimators.</p>
+
+<p>James-Stein estimator was apparently a big surprise to the statisticias back in the day.
+Even <a href="https://youtu.be/EYIKy_FM9x0?t=4931">Michael M. Jordan</a> mentioned it to be “mysterious and beautiful”.</p>
+
+<h3 id="steins-method">Stein’s Method</h3>
+<p>The contribution of Stein that I’m perhaps the most used to, is <a href="https://en.wikipedia.org/wiki/Stein%27s_method">Stein’s method</a> <a class="citation" href="#stein_bound_1972">(Stein, 1972)</a>.
+Stein method is a way to measure the difference between two distributions with respect to an arbitrary function in the form of</p>
+
+\[\begin{equation}
+	d\left(p, q\right) = \sup_{f \in \mathcal{H}} \left| \int f\,dp - \int f\,dq \right|.
+\end{equation}\]
+
+<p>This generalizes many other classic distance measures such as total variation.
+The key element is the freedom to choose \(f \in \mathcal{H}\).</p>
+
+<p>While Stein’s method has been a textbook (or more exactly, graduate-level mathematical statistics textbook) thing for some time, it recently sparked new interest.
+Mainly, Stein variational <a class="citation" href="#liu_stein_2016">(Liu &amp; Wang, 2016)</a> methods (or more generally variational particle methods) and kernelized discrepancies <a class="citation" href="#gorham_measuring_2015">(Gorham &amp; Mackey, 2015)</a>.
+Both of these have created their own fields and have now become active, promising lines of research that are in the heart of Bayesian front.
+(An interesting trivia is that Gorham and Mackey originally <a href="https://github.com/jgorham/SteinDiscrepancy.jl">implemented</a> their method in an early version of Julia.)</p>
+
+<h2 id="was-charles-stein-a-bayesian">Was Charles Stein a Bayesian?</h2>
+<p>During self-isolation, I stumbled upon this paper called <a href="https://www.jstor.org/stable/2245793?seq=1">A Conversation with Charles Stein</a> <a class="citation" href="#degroot_conversation_1986">(DeGroot, 1986)</a>, which is more or less a transcript of an interview with Charles Stein by Morris DeGroot (also a very famous statistician), that was published in Statistical Science.
+The interview has been published in 1986, which seems to be around Charles Stein retired, but amazingly enough, Charles lived until 2016!</p>
+
+<!-- ### An Interview Published in an Academic Journal? -->
+<!-- One thing that I admire about the statisticians is that they are much less narrow-viewed on what constitutes an academic paper. -->
+<!-- Both computer science (CS) and electronics engineering (EE) tend to have a very rigid in comparison. -->
+<!-- Statisticians tend to publish opinion pieces, rants, and even interviews! in their journals, which cannot be imagined in CS and EE. -->
+<!-- Academic publishing initially started from hand written letters, which shows the sole purpose of academic papers: communicating ideas and discoveries. -->
+<!-- After all, many academic journals are, in principle, magazines (hence the prestigious [IEEE Signal Processing Magazine](https://signalprocessingsociety.org/publications-resources/ieee-signal-processing-magazine)) or a collection of correspondences (hence the name "transactions" or "letters"). -->
+<!-- As long we can convey some form of intellectual value, I hope we could employ diverse ways of communication, not just the stereotypical "introduction-background-method-experiment-conclusion". -->
+
+<h3 id="was-charles-stein-a-bayesian-1">Was Charles Stein a Bayesian?</h3>
+
+<blockquote>
+  <p><strong>DeGroot</strong>: Since you brought up the subject, what is your view of the Bayesian philosophical framework?</p>
+
+  <p><strong>Stein</strong>: Well, it’s rather negative. Of course a lot of good work has been done by people from that point of view. 
+But basically the Bayesian point of view is often accompanied by an insistence that people ought to agree to a certain doctrine, even without really knowing what that doctrine is. 
+For example, would you be able to specify to me what you would consider an authoritative presentation of the Bayesian view that we are so often approached to accept</p>
+</blockquote>
+
+<p>It is not clear to me <em>which</em> doctrine Charles is talking about.
+But I would argue that the frequentist framework also involves lots of doctrines (also known as <em>assumptions</em>).
+But it’s true that the frequentist doctrines are, in general, much less controversial if you come from certain backgrounds.
+For example, it is easier to assume that the “true” parameter exists, rather than to admit that there is no such thing.</p>
+
+<blockquote>
+  <p><strong>DeGroot</strong>: Well, I’m not being interviewed. [Laughs] I could put in a plug for my book on Bayesian decision theory that gives an axiomatic system for probability and utility theory which together imply the entire decision-making process. 
+I mean, normatively anyway.</p>
+
+  <p><strong>Stein</strong>: Yes, but of course that is the thing. 
+One is asked to accept something normatively before one knows what that thing really is, rather than the attitude that we have toward other systems where we set out axioms or definitions and use them for the purpose of developing a system, and then if the system turns out to be interesting we pursue this. 
+But we never ask whether those axioms are true or not; rather, we ask if we can find instances in which this axiomatic development is useful. 
+If so, we accept it. In particular, we try to judge the consequences. 
+Whereas, as you know, there are grave difficulties in trying to apply the Bayesian notions to interesting problems because of the difficulty of choosing a prior distribution. 
+There is one point of view specified by Jeffreys who seems to be saying that there is a prescription, which he did not invent but which he seems to endorse, for choosing a (usually improper) prior distribution, and that simply does not work in general.
+The alternative is that the choice of a prior distribution must be made subjectively, and that I find completely inappropriate.
+Well, what can one say? Of course, statistical decision theory gives us, within a certain class of problems, an indication of how prior distributions do enter statistics from another point of view. 
+And so in some ways the difference between Wald’s decision-theoretic approach and the Bayesian approach is small.</p>
+</blockquote>
+
+<p>From this, we can clearly see that Charles Stein has the classic critical frequentist view on the Bayesian approach.
+However, we have to consider that the fundamentals of Bayesian theory only started to mature in the 90s and this interview took place way before that.
+Plus, the Bayesian framework has now established lots of connections with the frequentist framework (whether that is the appropriate attitude is, interestingly, quite a controversial subject).
+Furthermore, using subjective priors has been shown to be sensible as long as the model is evaluated objectively and extensively <a class="citation" href="#gelman_bayesian_2020a">(Gelman et al., 2020)</a>.</p>
+
+<p>I find the point about prior selection, however, still a valid critism.
+Although some people treat prior selection to be a “solved problem”, in practice, it is still a very difficult subject that needs lots of work on a problem-by-problem basis.
+Fortunately, many are working on principled procedures for eliciting subjective informative priors <a class="citation" href="#mikkola_prior_2021">(Mikkola et al., 2021)</a> and designing priors with good frequentist properties <a class="citation" href="#consonni_prior_2018">(Consonni et al., 2018)</a>.
+But, we need to mind that frequentist methods equally involve “manual work” to establish frequentist guarantees on a method-by-method basis.
+Therefore, on a practical note, neither is less difficult than the other.</p>
+
+<p>An interesting bit is the comment on what we now call Jeffreys priors.
+They are known to ocassionally mess up model comparison with Bayes factors, which I believe is what Charles Stein is discussing here. 
+(Please let me know if you think he is talking about a different aspect of Jeffreys priors.)</p>
+
+<blockquote>
+  <p><strong>DeGroot</strong>: Because Wald used priors as a technical device for determining optimal procedures.</p>
+
+  <p><strong>Stein</strong>: Yes, and therefore we are considering the same procedures. Roughly speaking, the basic theorems of decision theory say that in some sense good procedures and Bayes procedures are very much the same thing. 
+This is, of course, a gross over simplification, but it does enable us to understand how prior distributions come in.</p>
+</blockquote>
+
+<p>Interestingly, it seems that Charles Stein is sympathetic to (possibly subjective) Bayesian approaches when coming from a decision-theoric perspective.</p>
+
+<blockquote>
+  <p><strong>DeGroot</strong>: Let’s talk about probability for a moment. You say that the notion of subjective probability is unacceptable to you. 
+What definition of probability do you use?</p>
+
+  <p><strong>Stein</strong>: Essentially Kolmogorov’s. That it is a mathematical system.</p>
+
+  <p><strong>DeGroot</strong>: Simply any set of numbers that satisfies the axioms of the calculus of probabilities.</p>
+
+  <p><strong>Stein</strong>: Yes.</p>
+
+  <p><strong>DeGroot</strong>: But what do these numbers represent in the real world?</p>
+
+  <p><strong>Stein</strong>: Well, there is no unqiue interpretation.
+And of course I’m talking about Kolmogorov’s old interpretation of probability and not the complexity interpretation. 
+In his book he mentions briefly two aspects of the interpretation. The first is the traditional relative frequency of occurrence in the long run.
+And the second is that when one puts forward a probabilistic model that is to be taken completely seriously for a real world phenomenon, then one is asserting in principle that any single specified event having very small probability will not occur. 
+This, of course, combined with the law of large numbers, weak or strong, really is a broader interpretation than the frequency notion. 
+So, in fact, the frequency interpretation in that sense is redundant. 
+This doesn’t answer the question, “When I say the probability is 1/6 that this die will come up 6 on the next toss, what does that statement mean?” 
+But then in no serious work in any science do we answer the question, “What does this statement mean?” It is an erroneous philosophical point of view that leads to this sort of question.</p>
+</blockquote>
+
+<p>I find this comment from Charles Stein quite surprising.
+After all, Science has branched out of philosophy, and there is therefore no reason to shy away from philosophical questions and philosophical point of views.
+In fact, philosophical discussions are scattered everywhere in the history of science.
+I always thought that statistics was science more than mathematics (therefore some statistics departements prefer to call themselves statistical science).
+From this perspective, perhaps Charles Stein considered him to be more of a mathematician than a statistican.</p>
+
+<blockquote>
+  <p><strong>DeGroot</strong>: But surely that means that there is a subjective element entering into the development of the models and the numerical probabilities.</p>
+
+  <p><strong>Stein</strong>: But, you see, that’s something very different from saying that one is absolutely never permitted to consider a probabilistic model in which anything is unknown, and that is the strict interpretation of the Bayesian point of view. 
+Some statisticians seem to try to accept this point of view as sort of a philosophical position but to deny it in practice, which is not reasonable.</p>
+</blockquote>
+
+<p>This comment is interesting because, in practice, it is very rare to encounter a problem where absolutely no prior information is available.
+Often times (or rather, all the time) we at least have an idea about the support or the extreme values of the data.
+And even this much information is pretty useful as far as prior information goes.</p>
+
+<blockquote>
+  <p><strong>DeGroot</strong>: Do you think your political views influence the kind of problems you work on and your scientific philosophy at all, or are they separate?</p>
+
+  <p><strong>Stein</strong>: I’d say they are largely separate. Of course, I don’t do military work, not even nominally. That is, I haven’t been on a military contract for 18 years.
+ Actually, even before that it was distasteful but I allowed myself to be talked into it. But this is a hard  question to answer.
+I would admit that my work is largely independent of my political attitudes. 
+I don’t agree with Lindley that a subjective approach to probability is a consequence of being a Marxist or socialist.</p>
+</blockquote>
+
+<p>Lindley would be surprised to know how much ground the “Marxists” have gained to this day.
+But seriously, interesting to know that Lindley thought this way.</p>
+
+<blockquote>
+  <p><strong>Stein</strong>: Yes. I may want to modify some of my answers when I see the transcript of this conversation.
+Somehow I don’t seem to think along the same lines as other people, which is useful. It’s good that different  people think differently.</p>
+
+  <p><strong>DeGroot</strong>: Thank you, Charles</p>
+</blockquote>
+
+<!-- Indeed, speaking and listening to each others' opinion freely without prejudice is becoming more and more difficult. -->
+<!-- I believe different opinions are especially valuable since they broaden one's view. -->
+<!-- It is ironic that, on this day and age where everyone is connected in the speed of light, echochambers and self-reinforcement of opinions is becoming a bigger problem, especially in my home country South Korea. -->
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>From this nice interview by DeGroot, I could see how Charles Stein, and probably many well respected statistians of that day, thought of Bayesian approaches.
+I would be interested to know whether Charles Stein actively worked after this interview.
+Unfortunately, after a quick search, I couldn’t find a complete bibliogrphay of Charles Stein’s.</p>
+
+<h2 id="references">References</h2>
+<ol class="bibliography"><li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="stein_inadmissibility_1956">
+        
+          <!-- Title -->
+          <div class="title"><b>Inadmissibility of the Usual Estimator for the Mean of a Multivariate Normal Distribution</b></div>
+          <!-- Author -->
+          <div class="author">Charles Stein.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Proceedings of the Third Berkeley Symposium on Mathematical Statistics and Probability, Volume 1: Contributions to the Theory of Statistics</em>, Jan 1956
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="efron_stein_1973">
+        
+          <!-- Title -->
+          <div class="title"><b>Stein’s Estimation Rule and Its Competitors–an Empirical Bayes Approach</b></div>
+          <!-- Author -->
+          <div class="author">Bradley Efron,&nbsp;and Carl Morris.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Journal of the American Statistical Association</em>, Mar 1973
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="stein_bound_1972">
+        
+          <!-- Title -->
+          <div class="title"><b>A Bound for the Error in the Normal Approximation to the Distribution of a Sum of Dependent Random Variables</b></div>
+          <!-- Author -->
+          <div class="author">Charles Stein.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Proceedings of the Sixth Berkeley Symposium on Mathematical Statistics and Probability, Volume 2: Probability Theory</em>, Jan 1972
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="liu_stein_2016">
+        
+          <!-- Title -->
+          <div class="title"><b>Stein Variational Gradient Descent: A General Purpose Bayesian Inference Algorithm</b></div>
+          <!-- Author -->
+          <div class="author">Qiang Liu,&nbsp;and Dilin Wang.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Proceedings of the 30th International Conference on Neural Information Processing Systems</em>, Jan 2016
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="gorham_measuring_2015">
+        
+          <!-- Title -->
+          <div class="title"><b>Measuring Sample Quality with Stein’ s Method</b></div>
+          <!-- Author -->
+          <div class="author">Jackson Gorham,&nbsp;and Lester Mackey.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Advances in Neural Information Processing Systems</em>, Jan 2015
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="degroot_conversation_1986">
+        
+          <!-- Title -->
+          <div class="title"><b>A Conversation with Charles Stein</b></div>
+          <!-- Author -->
+          <div class="author">Morris H. DeGroot.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Statistical Science</em>, Jan 1986
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="gelman_bayesian_2020a">
+        
+          <!-- Title -->
+          <div class="title"><b>Bayesian Workflow</b></div>
+          <!-- Author -->
+          <div class="author">Andrew Gelman,&nbsp;Aki Vehtari,&nbsp;Daniel Simpson,&nbsp;Charles C. Margossian,&nbsp;Bob Carpenter,&nbsp;Yuling Yao,&nbsp;Lauren Kennedy,&nbsp;Jonah Gabry,&nbsp;Paul-Christian Bürkner,&nbsp;and Martin Modrák.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em></em>, Nov 2020
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="mikkola_prior_2021">
+        
+          <!-- Title -->
+          <div class="title"><b>Prior Knowledge Elicitation: The Past, Present, and Future</b></div>
+          <!-- Author -->
+          <div class="author">Petrus Mikkola,&nbsp;Osvaldo A. Martin,&nbsp;Suyog Chandramouli,&nbsp;Marcelo Hartmann,&nbsp;Oriol Abril Pla,&nbsp;Owen Thomas,&nbsp;Henri Pesonen,&nbsp;Jukka Corander,&nbsp;Aki Vehtari,&nbsp;Samuel Kaski,&nbsp;Paul-Christian Bürkner,&nbsp;and Arto Klami.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em></em>, Dec 2021
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="consonni_prior_2018">
+        
+          <!-- Title -->
+          <div class="title"><b>Prior Distributions for Objective Bayesian Analysis</b></div>
+          <!-- Author -->
+          <div class="author">Guido Consonni,&nbsp;Dimitris Fouskakis,&nbsp;Brunero Liseo,&nbsp;and Ioannis Ntzoufras.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Bayesian Analysis</em>, Jun 2018
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li></ol>
+
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>]]></content><author><name></name></author><category term="Bayes" /><summary type="html"><![CDATA[I recently contracted COVID (probably while watching the Rolling Stones perform at Hyde Park…) and therefore had to self-isolate. During this time, I was curious whether the legendary Charles M. Stein (1920-2016) was a Bayesian, given his huge contribution to Bayesian statistics and machine learning.]]></summary></entry><entry><title type="html">An Attempt to Make Gaussian Processes on Julia GPU-compatible and Differentiable</title><link href="https://red-portal.github.io/blog/2022/gp_cuda/" rel="alternate" type="text/html" title="An Attempt to Make Gaussian Processes on Julia GPU-compatible and Differentiable" /><published>2022-04-26T00:00:00+00:00</published><updated>2022-04-26T00:00:00+00:00</updated><id>https://red-portal.github.io/blog/2022/gp_cuda</id><content type="html" xml:base="https://red-portal.github.io/blog/2022/gp_cuda/"><![CDATA[<p>Currently, there isn’t a way to implement Gaussian processes in Julia in a way that supports both GPU acceleration and differentiation.
+To fill the void, I implemented a very minimal package (or a snippet rather).
+The implementation can be found <a href="https://github.com/Red-Portal/CUDAGaussianProcessesExample.jl">here</a>.</p>
+
+<h2 id="the-state-of-gaussian-processes-in-julia">The State of Gaussian Processes in Julia</h2>
+<p>Currently, the Gaussian process echosystem in Julia is somewhat fragmented.
+We have <a href="https://github.com/STOR-i/GaussianProcesses.jl/tree/master/src/kernels">GaussianProcesses.jl</a>, which is a standalone package that does <em>just</em> GPs, <a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl">AbstractGPs</a> that tries to combine multiple GP related libraries into a standardized API, <a href="https://github.com/theogf/AugmentedGaussianProcesses.jl">AugmentedGaussianProcesses.jl</a> that provides some advanced GP algorithms on top of AbstractGPs.
+Unfortunately, none of these libraries currently work on GPUs.
+This is way behind the norm of Python where <a href="https://github.com/cornellius-gp/gpytorch">GPyTorch</a> supports GPUs quite well.</p>
+
+<p>Here is a summary of the current trends for implementing GPs in Julia.</p>
+<ul>
+  <li>Use <a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl">KernelFunctions.jl</a> for crafting your covariance kernels and computing the Gram matrix.</li>
+  <li>Use <a href="https://github.com/JuliaStats/PDMats.jl">PDMats.jl</a> for computing the Cholesky, solving systems, computing quadratics, and etc..</li>
+  <li>Use <a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl">AbstractGPs.jl</a> for abstracting all of the GP manipulations.
+Frankly speaking, <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code> is the key here.</li>
+</ul>
+
+<p>The main issue is that most GP libraries (including <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code>) rely on <a href="https://github.com/JuliaStats/Distances.jl">Distances.jl</a>, which is a package for efficiently computing Gram matrices (or distance matrices).
+Although <code class="language-plaintext highlighter-rouge">Distances.jl</code> is heavily optimized, it’s optimized too much.
+It is very difficult to make it compatible with <a href="https://github.com/JuliaGPU/CUDA.jl">CUDA.jl</a> (an amazing package that is a very good reason to convert to Julia).
+This bottleneck has been <em>the</em> showstopper since everbody is pretty much relying on <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code>.
+There is some <a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl/issues/431">dicussion</a> to ditch <code class="language-plaintext highlighter-rouge">Distances.jl</code> in favor of <a href="https://github.com/mcabbott/Tullio.jl">Tullio.jl</a>, but this also has the following downsides:</p>
+<ul>
+  <li>It doesn’t support differentiation for complex multiline expressions. It does only symbolic differentiation.</li>
+  <li>It’s <a href="https://github.com/mcabbott/Tullio.jl/issues/80">not very efficient</a> on GPUs, especially for <a href="https://github.com/mcabbott/Tullio.jl/issues/30">gradients</a>.
+So even if <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code> moves on to <code class="language-plaintext highlighter-rouge">Tullio.jl</code>, there is not much to expect at this point.</li>
+</ul>
+
+<p>To summarize,</p>
+<ul>
+  <li>GPU support for Gaussian processes on Julia is non-existent.</li>
+  <li>Efficient GPU support is not to be expected in the short term.</li>
+</ul>
+
+<h2 id="a-minimal-cuda-compatible-gp-implementation">A Minimal CUDA-Compatible GP Implementation</h2>
+<h3 id="overview">Overview</h3>
+<p>Regardless of the current GPU support, I urgently needed GPs to work on GPUs <em>right now</em>.
+The things we normally expect from GPU support for GPs are these two things:</p>
+<ol>
+  <li>faster Gram matrix computation,</li>
+  <li>faster Cholesky decomposition,</li>
+  <li>faster backward/forward substitution, and</li>
+  <li>support differentiation with respect to the hyperparameters and the latent function values</li>
+</ol>
+
+<p>2 and 3 work (pretty much) out of the box in Julia.
+1 and 4 is the tricky part.
+So, I ended up spending a few days writing a few CUDA kernels using <a href="https://github.com/JuliaGPU/KernelAbstractions.jl">KernelAbstractions.jl</a>.</p>
+
+<p>The implementation can be found <a href="https://github.com/Red-Portal/CUDAGaussianProcessesExample.jl">here</a>.
+It supports the two following covariance kernels:
+\(\begin{align}
+	k\left(\mathbf{x}, \mathbf{y}\right) &amp;= \sigma^2 k_{\text{SE ARD}}\left(\mathbf{x}, \mathbf{y} \right)  + \epsilon^2 
+	\newline
+	k\left(\mathbf{x}, \mathbf{y}\right) &amp;= \sigma^2 k_{\text{Matern 5/2 ARD}}\left(\mathbf{x}, \mathbf{y} \right)  + \epsilon^2
+\end{align}\)
+where <code class="language-plaintext highlighter-rouge">SE ARD</code> and <code class="language-plaintext highlighter-rouge">Matern 5/2</code> stand for the squared-exponential and Matern 5/2 kernels with automatic relevance determination (ARD), which are, arguably, the most widely used covariance kernels.
+We have \(D + 2\) hyperparameters here: the \(D\) ARD length scales, the noise variance \(\epsilon^2\), and the function variance \(\sigma^2\).</p>
+
+<h3 id="likelihood">Likelihood</h3>
+<p>The log likelihood of a Gaussian process prior is
+\begin{equation}
+	\log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) = -\frac{1}{2}\mathbf{y}^{\top} \mathbf{K^{-1}} \mathbf{y} - \frac{1}{2} \log \mathrm{det} \mathbf{K} - \frac{N}{2} \log 2 \pi.
+\end{equation}
+This is implemented as</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">function</span><span class="nf"> gp_likelihood</span><span class="x">(</span>
+    <span class="n">X_dev</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">,</span><span class="mi">2</span><span class="x">},</span>
+    <span class="n">y_dev</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">,</span><span class="mi">1</span><span class="x">},</span>
+    <span class="n">σ²</span><span class="o">::</span><span class="kt">Real</span><span class="x">,</span>
+    <span class="n">ϵ²</span><span class="o">::</span><span class="kt">Real</span><span class="x">,</span>
+    <span class="n">ℓ²_dev</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">,</span><span class="mi">1</span><span class="x">},</span>
+<span class="x">)</span>
+    <span class="n">n_data</span> <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+    <span class="n">R</span>      <span class="o">=</span> <span class="n">distance_matrix_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">X_dev</span><span class="x">,</span> <span class="n">ℓ²_dev</span><span class="x">)</span>
+    <span class="n">K</span>      <span class="o">=</span> <span class="n">matern52_gpu</span><span class="x">(</span><span class="n">R</span><span class="x">)</span>
+    <span class="n">K_ϵ</span>    <span class="o">=</span> <span class="n">eltype</span><span class="x">(</span><span class="n">K</span><span class="x">)(</span><span class="n">σ²</span><span class="x">)</span> <span class="o">*</span> <span class="n">K</span> <span class="o">+</span> <span class="n">eltype</span><span class="x">(</span><span class="n">K</span><span class="x">)(</span><span class="n">ϵ²</span><span class="x">)</span> <span class="o">*</span> <span class="n">I</span>
+    <span class="n">K_chol</span> <span class="o">=</span> <span class="n">cholesky</span><span class="x">(</span><span class="n">K_ϵ</span><span class="x">;</span> <span class="n">check</span> <span class="o">=</span> <span class="nb">false</span><span class="x">)</span>
+
+    <span class="k">if</span> <span class="n">issuccess</span><span class="x">(</span><span class="n">K_chol</span><span class="x">)</span>
+        <span class="n">L⁻¹y</span> <span class="o">=</span> <span class="n">K_chol</span><span class="o">.</span><span class="n">L</span> <span class="o">\</span> <span class="n">y_dev</span>
+        <span class="n">yᵀΣ⁻¹y</span> <span class="o">=</span> <span class="n">dot</span><span class="x">(</span><span class="n">L⁻¹y</span><span class="x">,</span> <span class="n">L⁻¹y</span><span class="x">)</span>
+        <span class="n">logdet</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sum</span><span class="x">(</span><span class="n">log</span><span class="o">.</span><span class="x">(</span><span class="kt">Array</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">K_chol</span><span class="o">.</span><span class="n">U</span><span class="x">))))</span>
+        <span class="x">(</span><span class="n">yᵀΣ⁻¹y</span> <span class="o">+</span> <span class="n">logdet</span> <span class="o">+</span> <span class="n">n_data</span> <span class="o">*</span> <span class="n">log</span><span class="x">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">π</span><span class="x">))</span> <span class="o">/</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="k">else</span>
+        <span class="o">-</span><span class="nb">Inf</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>You can use the squared exponential kernel by swapping <code class="language-plaintext highlighter-rouge">matern52_gpu</code> into <code class="language-plaintext highlighter-rouge">se_gpu</code> and <code class="language-plaintext highlighter-rouge">gram_matern52_derivative_gpu</code> into <code class="language-plaintext highlighter-rouge">gram_se_derivative_gpu</code>.
+The other routines are self-contained in <code class="language-plaintext highlighter-rouge">gpu_cuda_utils.jl</code>.</p>
+
+<h3 id="hyperparameter-gradients">Hyperparameter Gradients</h3>
+<p>For the gradients, the GPML <a class="citation" href="#rasmussen_gaussian_2006">(Rasmussen &amp; Williams, 2006)</a> book shows how to differentiate the log likelihood.
+For the record, the gradients for the kernel hypeparameters are
+\(\begin{align}
+	\nabla_{\mathbf{y}} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{K^{-1}} \mathbf{y} 
+	\\
+	\nabla_{\epsilon^2} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{y}^{\top} \, \mathbf{K}^{-1} \mathbf{K}^{-1} \, \mathbf{y} - \mathrm{tr}\left( \mathbf{K}^{-1} \right)
+	\\
+	\nabla_{\sigma^2} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{y}^{\top} \, \mathbf{K}^{-1} \mathbf{K} \mathbf{K}^{-1} \, \mathbf{y} - \mathrm{tr}\left( \mathbf{K}^{-1} \mathbf{K} \right)
+	\\
+	\nabla_{\ell^2} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{y}^{\top} \, \mathbf{K}^{-1} \frac{\partial \mathbf{K}}{\partial \ell^2} \mathbf{K}^{-1} \, \mathbf{y} - \mathrm{tr}\left( \mathbf{K}^{-1} \frac{\partial \mathbf{K}}{\partial \ell^2} \right),
+\end{align}\)
+where, clearly, there is lots of opportunities for reuse.
+Therefore, writing our own gradients should be far more efficient for GPs both in terms of time and memory.</p>
+
+<p>You can compute the gradients using <code class="language-plaintext highlighter-rouge">Zygote</code> as</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">likelihood_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="o">=</span> <span class="k">begin</span>
+    <span class="n">N</span>  <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+    <span class="n">ℓσ</span> <span class="o">=</span> <span class="n">θ</span><span class="x">[</span><span class="mi">1</span><span class="x">]</span>
+    <span class="n">ℓϵ</span> <span class="o">=</span> <span class="n">θ</span><span class="x">[</span><span class="mi">2</span><span class="x">]</span>
+    <span class="n">y</span>  <span class="o">=</span> <span class="n">cu</span><span class="x">(</span><span class="n">θ</span><span class="x">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">2</span><span class="o">+</span><span class="n">N</span><span class="x">])</span>
+    <span class="n">ℓ²</span> <span class="o">=</span> <span class="n">cu</span><span class="x">(</span><span class="n">exp</span><span class="o">.</span><span class="x">(</span><span class="n">θ</span><span class="x">[</span><span class="mi">3</span><span class="o">+</span><span class="n">N</span><span class="o">:</span><span class="k">end</span><span class="x">]</span> <span class="o">*</span> <span class="mi">2</span><span class="x">))</span>
+    <span class="n">gp_likelihood</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">exp</span><span class="x">(</span><span class="n">ℓσ</span> <span class="o">*</span> <span class="mi">2</span><span class="x">),</span> <span class="n">exp</span><span class="x">(</span><span class="n">ℓϵ</span> <span class="o">*</span> <span class="mi">2</span><span class="x">),</span> <span class="n">ℓ²</span><span class="x">)</span>
+<span class="k">end</span>
+<span class="n">Zygote</span><span class="o">.</span><span class="n">gradient</span><span class="x">(</span><span class="n">θ_</span> <span class="o">-&gt;</span> <span class="n">likelihood_gpu</span><span class="x">(</span><span class="n">X</span><span class="x">,</span> <span class="n">θ_</span><span class="x">),</span> <span class="n">θ</span><span class="x">)[</span><span class="mi">1</span><span class="x">]</span></code></pre></figure>
+
+<p>Note that the gradients with respect to <code class="language-plaintext highlighter-rouge">X_dev</code> are not implemented, but shouldn’t be too hard to do.</p>
+
+<h2 id="demonstration">Demonstration</h2>
+<p>I will now compare the GPU implementation against <code class="language-plaintext highlighter-rouge">AbtractGPs</code>.
+I will use 32-bit floating point numbers since most GPUs perform very poorly with 64-bits.
+Since I will use my poor little GTX 1050 GPU, the numbers should be much better on a proper workstation with a beefier GPU.
+To get proper performance measurements, I turned off frequency scaling and paused Youtube.
+(Imagined how bored I was during the experiments.)</p>
+
+<h3 id="numerical-accuracy">Numerical Accuracy</h3>
+<p>In terms of numerical accuracy, the GPU version is close to the result of <code class="language-plaintext highlighter-rouge">AbstractGPs</code> at 1e-4 tolerance level:</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">Test</span><span class="o">.</span><span class="nd">@testset</span> <span class="s">"GPU Gaussian process numerical accuracy test"</span> <span class="k">begin</span>
+    <span class="n">N</span>     <span class="o">=</span> <span class="mi">128</span>
+    <span class="n">D</span>     <span class="o">=</span> <span class="mi">16</span>
+    <span class="n">X</span>     <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="kt">Float32</span><span class="x">,</span> <span class="n">D</span><span class="x">,</span> <span class="n">N</span><span class="x">)</span>
+    <span class="n">X_dev</span> <span class="o">=</span> <span class="n">cu</span><span class="x">(</span><span class="n">X</span><span class="x">)</span>
+    <span class="n">θ</span>     <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="kt">Float32</span><span class="x">,</span> <span class="n">N</span> <span class="o">+</span> <span class="n">D</span> <span class="o">+</span> <span class="mi">2</span><span class="x">)</span>
+
+    <span class="nd">@test</span> <span class="n">likelihood_cpu</span><span class="x">(</span><span class="n">X</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="n">≈</span> <span class="n">likelihood_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span>          <span class="n">atol</span><span class="o">=</span><span class="mf">1e-4</span>
+    <span class="nd">@test</span> <span class="n">norm</span><span class="x">(</span><span class="n">gradient_cpu</span><span class="x">(</span><span class="n">X</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="o">-</span> <span class="n">gradient_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">θ</span><span class="x">))</span> <span class="n">≈</span> <span class="mf">0.0</span>  <span class="n">atol</span><span class="o">=</span><span class="mf">1e-4</span>
+<span class="k">end</span></code></pre></figure>
+
+<h3 id="computational-performance">Computational Performance</h3>
+<p>In terms of performance, here is a execution time comparison:</p>
+<div class="center">
+<figure>
+
+  <picture>
+    <source media="(max-width: 480px)" srcset="/assets/img/gp_cuda_scaling-480.webp" />
+    <source media="(max-width: 800px)" srcset="/assets/img/gp_cuda_scaling-800.webp" />
+    <source media="(max-width: 1400px)" srcset="/assets/img/gp_cuda_scaling-1400.webp" />
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/gp_cuda_scaling.png" data-zoomable="" />
+
+  </picture>
+
+</figure>
+
+</div>
+<p>The error bars are the 80% empirical quantiles and \(N\) is the number of datapoints.
+We can see that GPUs quickly becomes more efficient for \(N&gt;100\).
+In general, it is about 10 times faster, which is pretty good for a simple implementation without any GPU-specific optimization (not even using shared memory!).
+Since GTX 1050 is supposed to achieve 1TFLOPS and most modern CPUs achieve around 200GFLOPS, this is close to the most we can get.</p>
+
+<h3 id="realistic-example">Realistic Example</h3>
+<p>The <a href="https://github.com/Red-Portal/CUDAGaussianProcessExample.jl/blob/master/main.jl">main.jl</a> file in the repository contains a realistic example with predictions.
+I performed MAP-II hyperparameter optimization using <a href="https://github.com/JuliaNLSolvers/Optim.jl/">Optim.jl</a> on the Boston housing dataset.
+Here are the results:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌ Info: MAP-II Hyperparameter Optimization Result
+│   likelihood_before = -544.3303199616416
+│   likelihood_after = -116.86849745187607
+│   rmse_before = 0.60338885f0
+│   rmse_after = 0.3102568f0
+│   lpd_before = -0.8926057396811591
+└   lpd_after = -0.16185267732364805
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">before</code> is the initial hyperparameters used without optimization and <code class="language-plaintext highlighter-rouge">after</code> is the result of MAP-II.
+We can see that everything is working in order.</p>
+
+<h3 id="cholesky-fail">Cholesky Fail</h3>
+<p>When the Cholesky fails, the current implementation does not throw.
+Instead, it spits a <code class="language-plaintext highlighter-rouge">-Inf</code> for the likelihood and <code class="language-plaintext highlighter-rouge">CUDA.zeros</code> arrays for the gradients.</p>
+
+<h3 id="fixing-zygote-for-differentiating-cholesky-with-cuda">Fixing Zygote for Differentiating <code class="language-plaintext highlighter-rouge">Cholesky</code> with CUDA</h3>
+
+<p><strong>Update: this has been <a href="https://github.com/JuliaDiff/ChainRules.jl/pull/630">fixed </a> by <a href="https://github.com/sethaxen">sethaxen</a>.</strong>
+<strong>See also the issues at <a href="https://github.com/JuliaDiff/ChainRules.jl/issues/629">ChainRules.jl</a>, <a href="https://github.com/FluxML/Zygote.jl/issues/1210">Zygote.jl</a></strong></p>
+
+<p>While doing this, I ran into a bug that prevents <code class="language-plaintext highlighter-rouge">Cholesky</code> being differentiated by <code class="language-plaintext highlighter-rouge">Zygote</code>, which I <a href="https://github.com/FluxML/Zygote.jl/issues/1210">reported</a>.
+A quick fix is to use the following snippet:</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="nd">@eval</span> <span class="n">Zygote</span> <span class="k">begin</span>
+    <span class="k">import</span> <span class="n">CUDA</span>
+    <span class="nd">@adjoint</span> <span class="k">function</span><span class="nf"> cholesky</span><span class="x">(</span><span class="n">Σ</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">;</span> <span class="n">check</span> <span class="o">=</span> <span class="nb">true</span><span class="x">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">cholesky</span><span class="x">(</span><span class="n">Σ</span><span class="x">,</span> <span class="n">check</span> <span class="o">=</span> <span class="n">check</span><span class="x">)</span>
+        <span class="n">C</span><span class="x">,</span> <span class="k">function</span><span class="nf"> </span><span class="o">(Δ::</span><span class="kt">NamedTuple</span><span class="x">)</span>
+            <span class="n">issuccess</span><span class="x">(</span><span class="n">C</span><span class="x">)</span> <span class="o">||</span> <span class="n">throw</span><span class="x">(</span><span class="kt">PosDefException</span><span class="x">(</span><span class="n">C</span><span class="o">.</span><span class="n">info</span><span class="x">))</span>
+            <span class="n">U</span><span class="x">,</span> <span class="n">Ū</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">U</span><span class="x">,</span> <span class="n">Δ</span><span class="o">.</span><span class="n">factors</span>
+
+            <span class="n">U_tru</span> <span class="o">=</span> <span class="n">triu</span><span class="x">(</span><span class="n">U</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+            <span class="n">Ū_tru</span> <span class="o">=</span> <span class="n">triu</span><span class="x">(</span><span class="n">Ū</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">similar</span><span class="x">(</span><span class="n">U</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">mul!</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">,</span> <span class="n">Ū_tru</span><span class="x">,</span> <span class="n">U_tru</span><span class="err">'</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">copytri!</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">,</span> <span class="sc">'U'</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">ldiv!</span><span class="x">(</span><span class="n">U</span><span class="x">,</span> <span class="n">Σ̄</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">CUDA</span><span class="o">.</span><span class="n">CUBLAS</span><span class="o">.</span><span class="n">trsm!</span><span class="x">(</span><span class="sc">'R'</span><span class="x">,</span> <span class="sc">'U'</span><span class="x">,</span> <span class="sc">'T'</span><span class="x">,</span> <span class="sc">'N'</span><span class="x">,</span> <span class="n">one</span><span class="x">(</span><span class="n">eltype</span><span class="x">(</span><span class="n">Σ</span><span class="x">)),</span> <span class="n">U</span><span class="o">.</span><span class="n">data</span><span class="x">,</span> <span class="n">Σ̄</span><span class="x">)</span>
+            <span class="n">Σ̄</span><span class="x">[</span><span class="n">diagind</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">)]</span> <span class="o">./=</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="x">(</span><span class="kt">UpperTriangular</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">),)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Update: this has been <a href="https://github.com/JuliaGPU/CUDA.jl/pull/1538">fixed</a> by myself</strong> <br />
+The weird part of my solution here is the two calls to <code class="language-plaintext highlighter-rouge">triu</code>, which <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.triu">create</a> a normal <code class="language-plaintext highlighter-rouge">Matrix</code> that is upper triangular, in contrast to the <code class="language-plaintext highlighter-rouge">UpperTriangular</code> adaptor.
+This is necessary because, currently, multiplying two <code class="language-plaintext highlighter-rouge">UpperTriangular</code> matrices on the GPU is extremely slow.
+Running the profiler seems to show that there is a weird device memory copy somewhere that takes forever, but I didn’t pursue the matter further.</p>
+
+<h3 id="system-information">System Information</h3>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">julia</span><span class="o">&gt;</span> <span class="n">versioninfo</span><span class="x">()</span>
+<span class="n">Julia</span> <span class="n">Version</span> <span class="mf">1.7</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">Commit</span> <span class="n">bf53498635</span> <span class="x">(</span><span class="mi">2022</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">06</span> <span class="mi">15</span><span class="o">:</span><span class="mi">21</span> <span class="kt">UTC</span><span class="x">)</span>
+<span class="n">Platform</span> <span class="n">Info</span><span class="o">:</span>
+  <span class="n">OS</span><span class="o">:</span> <span class="n">Linux</span> <span class="x">(</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="x">)</span>
+  <span class="n">CPU</span><span class="o">:</span> <span class="n">Intel</span><span class="x">(</span><span class="n">R</span><span class="x">)</span> <span class="n">Core</span><span class="x">(</span><span class="n">TM</span><span class="x">)</span> <span class="n">i7</span><span class="o">-</span><span class="mi">7700</span><span class="n">HQ</span> <span class="n">CPU</span> <span class="err">@</span> <span class="mf">2.80</span><span class="n">GHz</span>
+  <span class="n">WORD_SIZE</span><span class="o">:</span> <span class="mi">64</span>
+  <span class="n">LIBM</span><span class="o">:</span> <span class="n">libopenlibm</span>
+  <span class="n">LLVM</span><span class="o">:</span> <span class="n">libLLVM</span><span class="o">-</span><span class="mf">12.0</span><span class="o">.</span><span class="mi">1</span> <span class="x">(</span><span class="n">ORCJIT</span><span class="x">,</span> <span class="n">skylake</span><span class="x">)</span>
+<span class="n">Environment</span><span class="o">:</span>
+  <span class="n">JULIA_NUM_THREADS</span> <span class="o">=</span> <span class="mi">8</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">julia</span><span class="o">&gt;</span> <span class="n">CUDA</span><span class="o">.</span><span class="n">versioninfo</span><span class="x">()</span>
+<span class="n">CUDA</span> <span class="n">toolkit</span> <span class="mf">11.6</span><span class="x">,</span> <span class="n">artifact</span> <span class="n">installation</span>
+<span class="n">NVIDIA</span> <span class="n">driver</span> <span class="mf">510.60</span><span class="o">.</span><span class="mi">2</span><span class="x">,</span> <span class="k">for</span> <span class="n">CUDA</span> <span class="mf">11.6</span>
+<span class="n">CUDA</span> <span class="n">driver</span> <span class="mf">11.6</span>
+
+<span class="n">Libraries</span><span class="o">:</span> 
+<span class="o">-</span> <span class="n">CUBLAS</span><span class="o">:</span> <span class="mf">11.8</span><span class="o">.</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">CURAND</span><span class="o">:</span> <span class="mf">10.2</span><span class="o">.</span><span class="mi">9</span>
+<span class="o">-</span> <span class="n">CUFFT</span><span class="o">:</span> <span class="mf">10.7</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">-</span> <span class="n">CUSOLVER</span><span class="o">:</span> <span class="mf">11.3</span><span class="o">.</span><span class="mi">2</span>
+<span class="o">-</span> <span class="n">CUSPARSE</span><span class="o">:</span> <span class="mf">11.7</span><span class="o">.</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">CUPTI</span><span class="o">:</span> <span class="mf">16.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">-</span> <span class="n">NVML</span><span class="o">:</span> <span class="mf">11.0</span><span class="o">.</span><span class="mi">0</span><span class="o">+</span><span class="mf">510.60</span><span class="o">.</span><span class="mi">2</span></code></pre></figure>
+
+<h2 id="references">References</h2>
+<ol class="bibliography"><li><!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="rasmussen_gaussian_2006">
+        
+          <!-- Title -->
+          <div class="title"><b>Gaussian Processes for Machine Learning</b></div>
+          <!-- Author -->
+          <div class="author">Carl Edward Rasmussen,&nbsp;and Christopher K. I. Williams.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            2006
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li></ol>
+
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>]]></content><author><name></name></author><category term="GP" /><category term="GP" /><category term="CUDA" /><summary type="html"><![CDATA[Currently, there isn’t a way to implement Gaussian processes in Julia in a way that supports both GPU acceleration and differentiation. To fill the void, I implemented a very minimal package (or a snippet rather). The implementation can be found here.]]></summary></entry></feed>

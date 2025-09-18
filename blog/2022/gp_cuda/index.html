@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kyurae Kim | An Attempt to Make Gaussian Processes on Julia GPU-compatible and Differentiable</title>
+    <meta name="author" content="Kyurae  Kim" />
+    <meta name="description" content="Kyurae Kim's blog.
+" />
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous" />
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/pastie.css" media="none" id="highlight_theme_light" />
+
+    <!-- Styles -->
+    <!--  -->
+    <link rel="shortcut icon" href="/assets/img/favicon.jpg"/>
+    <!--  -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://red-portal.github.io/blog/2022/gp_cuda/">
+    
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/pastie.css" media="none" id="highlight_theme_dark" />
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="https://red-portal.github.io/">Kyurae Kim</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog</a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <div class="toggle-container">
+                <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </a>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Content -->
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">An Attempt to Make Gaussian Processes on Julia GPU-compatible and Differentiable</h1>
+    <p class="post-meta">April 26, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+        ·  
+        <a href="/blog/tag/GP">
+          <i class="fas fa-hashtag fa-sm"></i> GP</a>  
+          <a href="/blog/tag/CUDA">
+          <i class="fas fa-hashtag fa-sm"></i> CUDA</a>  
+          
+        ·  
+        <a href="/blog/category/GP">
+          <i class="fas fa-tag fa-sm"></i> GP</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>Currently, there isn’t a way to implement Gaussian processes in Julia in a way that supports both GPU acceleration and differentiation.
+To fill the void, I implemented a very minimal package (or a snippet rather).
+The implementation can be found <a href="https://github.com/Red-Portal/CUDAGaussianProcessesExample.jl" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<h2 id="the-state-of-gaussian-processes-in-julia">The State of Gaussian Processes in Julia</h2>
+<p>Currently, the Gaussian process echosystem in Julia is somewhat fragmented.
+We have <a href="https://github.com/STOR-i/GaussianProcesses.jl/tree/master/src/kernels" target="_blank" rel="noopener noreferrer">GaussianProcesses.jl</a>, which is a standalone package that does <em>just</em> GPs, <a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl" target="_blank" rel="noopener noreferrer">AbstractGPs</a> that tries to combine multiple GP related libraries into a standardized API, <a href="https://github.com/theogf/AugmentedGaussianProcesses.jl" target="_blank" rel="noopener noreferrer">AugmentedGaussianProcesses.jl</a> that provides some advanced GP algorithms on top of AbstractGPs.
+Unfortunately, none of these libraries currently work on GPUs.
+This is way behind the norm of Python where <a href="https://github.com/cornellius-gp/gpytorch" target="_blank" rel="noopener noreferrer">GPyTorch</a> supports GPUs quite well.</p>
+
+<p>Here is a summary of the current trends for implementing GPs in Julia.</p>
+<ul>
+  <li>Use <a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl" target="_blank" rel="noopener noreferrer">KernelFunctions.jl</a> for crafting your covariance kernels and computing the Gram matrix.</li>
+  <li>Use <a href="https://github.com/JuliaStats/PDMats.jl" target="_blank" rel="noopener noreferrer">PDMats.jl</a> for computing the Cholesky, solving systems, computing quadratics, and etc..</li>
+  <li>Use <a href="https://github.com/JuliaGaussianProcesses/AbstractGPs.jl" target="_blank" rel="noopener noreferrer">AbstractGPs.jl</a> for abstracting all of the GP manipulations.
+Frankly speaking, <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code> is the key here.</li>
+</ul>
+
+<p>The main issue is that most GP libraries (including <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code>) rely on <a href="https://github.com/JuliaStats/Distances.jl" target="_blank" rel="noopener noreferrer">Distances.jl</a>, which is a package for efficiently computing Gram matrices (or distance matrices).
+Although <code class="language-plaintext highlighter-rouge">Distances.jl</code> is heavily optimized, it’s optimized too much.
+It is very difficult to make it compatible with <a href="https://github.com/JuliaGPU/CUDA.jl" target="_blank" rel="noopener noreferrer">CUDA.jl</a> (an amazing package that is a very good reason to convert to Julia).
+This bottleneck has been <em>the</em> showstopper since everbody is pretty much relying on <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code>.
+There is some <a href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl/issues/431" target="_blank" rel="noopener noreferrer">dicussion</a> to ditch <code class="language-plaintext highlighter-rouge">Distances.jl</code> in favor of <a href="https://github.com/mcabbott/Tullio.jl" target="_blank" rel="noopener noreferrer">Tullio.jl</a>, but this also has the following downsides:</p>
+<ul>
+  <li>It doesn’t support differentiation for complex multiline expressions. It does only symbolic differentiation.</li>
+  <li>It’s <a href="https://github.com/mcabbott/Tullio.jl/issues/80" target="_blank" rel="noopener noreferrer">not very efficient</a> on GPUs, especially for <a href="https://github.com/mcabbott/Tullio.jl/issues/30" target="_blank" rel="noopener noreferrer">gradients</a>.
+So even if <code class="language-plaintext highlighter-rouge">KernelFunctions.jl</code> moves on to <code class="language-plaintext highlighter-rouge">Tullio.jl</code>, there is not much to expect at this point.</li>
+</ul>
+
+<p>To summarize,</p>
+<ul>
+  <li>GPU support for Gaussian processes on Julia is non-existent.</li>
+  <li>Efficient GPU support is not to be expected in the short term.</li>
+</ul>
+
+<h2 id="a-minimal-cuda-compatible-gp-implementation">A Minimal CUDA-Compatible GP Implementation</h2>
+<h3 id="overview">Overview</h3>
+<p>Regardless of the current GPU support, I urgently needed GPs to work on GPUs <em>right now</em>.
+The things we normally expect from GPU support for GPs are these two things:</p>
+<ol>
+  <li>faster Gram matrix computation,</li>
+  <li>faster Cholesky decomposition,</li>
+  <li>faster backward/forward substitution, and</li>
+  <li>support differentiation with respect to the hyperparameters and the latent function values</li>
+</ol>
+
+<p>2 and 3 work (pretty much) out of the box in Julia.
+1 and 4 is the tricky part.
+So, I ended up spending a few days writing a few CUDA kernels using <a href="https://github.com/JuliaGPU/KernelAbstractions.jl" target="_blank" rel="noopener noreferrer">KernelAbstractions.jl</a>.</p>
+
+<p>The implementation can be found <a href="https://github.com/Red-Portal/CUDAGaussianProcessesExample.jl" target="_blank" rel="noopener noreferrer">here</a>.
+It supports the two following covariance kernels:
+\(\begin{align}
+	k\left(\mathbf{x}, \mathbf{y}\right) &amp;= \sigma^2 k_{\text{SE ARD}}\left(\mathbf{x}, \mathbf{y} \right)  + \epsilon^2 
+	\newline
+	k\left(\mathbf{x}, \mathbf{y}\right) &amp;= \sigma^2 k_{\text{Matern 5/2 ARD}}\left(\mathbf{x}, \mathbf{y} \right)  + \epsilon^2
+\end{align}\)
+where <code class="language-plaintext highlighter-rouge">SE ARD</code> and <code class="language-plaintext highlighter-rouge">Matern 5/2</code> stand for the squared-exponential and Matern 5/2 kernels with automatic relevance determination (ARD), which are, arguably, the most widely used covariance kernels.
+We have \(D + 2\) hyperparameters here: the \(D\) ARD length scales, the noise variance \(\epsilon^2\), and the function variance \(\sigma^2\).</p>
+
+<h3 id="likelihood">Likelihood</h3>
+<p>The log likelihood of a Gaussian process prior is
+\begin{equation}
+	\log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) = -\frac{1}{2}\mathbf{y}^{\top} \mathbf{K^{-1}} \mathbf{y} - \frac{1}{2} \log \mathrm{det} \mathbf{K} - \frac{N}{2} \log 2 \pi.
+\end{equation}
+This is implemented as</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="k">function</span><span class="nf"> gp_likelihood</span><span class="x">(</span>
+    <span class="n">X_dev</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">,</span><span class="mi">2</span><span class="x">},</span>
+    <span class="n">y_dev</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">,</span><span class="mi">1</span><span class="x">},</span>
+    <span class="n">σ²</span><span class="o">::</span><span class="kt">Real</span><span class="x">,</span>
+    <span class="n">ϵ²</span><span class="o">::</span><span class="kt">Real</span><span class="x">,</span>
+    <span class="n">ℓ²_dev</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="x">,</span><span class="mi">1</span><span class="x">},</span>
+<span class="x">)</span>
+    <span class="n">n_data</span> <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+    <span class="n">R</span>      <span class="o">=</span> <span class="n">distance_matrix_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">X_dev</span><span class="x">,</span> <span class="n">ℓ²_dev</span><span class="x">)</span>
+    <span class="n">K</span>      <span class="o">=</span> <span class="n">matern52_gpu</span><span class="x">(</span><span class="n">R</span><span class="x">)</span>
+    <span class="n">K_ϵ</span>    <span class="o">=</span> <span class="n">eltype</span><span class="x">(</span><span class="n">K</span><span class="x">)(</span><span class="n">σ²</span><span class="x">)</span> <span class="o">*</span> <span class="n">K</span> <span class="o">+</span> <span class="n">eltype</span><span class="x">(</span><span class="n">K</span><span class="x">)(</span><span class="n">ϵ²</span><span class="x">)</span> <span class="o">*</span> <span class="n">I</span>
+    <span class="n">K_chol</span> <span class="o">=</span> <span class="n">cholesky</span><span class="x">(</span><span class="n">K_ϵ</span><span class="x">;</span> <span class="n">check</span> <span class="o">=</span> <span class="nb">false</span><span class="x">)</span>
+
+    <span class="k">if</span> <span class="n">issuccess</span><span class="x">(</span><span class="n">K_chol</span><span class="x">)</span>
+        <span class="n">L⁻¹y</span> <span class="o">=</span> <span class="n">K_chol</span><span class="o">.</span><span class="n">L</span> <span class="o">\</span> <span class="n">y_dev</span>
+        <span class="n">yᵀΣ⁻¹y</span> <span class="o">=</span> <span class="n">dot</span><span class="x">(</span><span class="n">L⁻¹y</span><span class="x">,</span> <span class="n">L⁻¹y</span><span class="x">)</span>
+        <span class="n">logdet</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sum</span><span class="x">(</span><span class="n">log</span><span class="o">.</span><span class="x">(</span><span class="kt">Array</span><span class="x">(</span><span class="n">diag</span><span class="x">(</span><span class="n">K_chol</span><span class="o">.</span><span class="n">U</span><span class="x">))))</span>
+        <span class="x">(</span><span class="n">yᵀΣ⁻¹y</span> <span class="o">+</span> <span class="n">logdet</span> <span class="o">+</span> <span class="n">n_data</span> <span class="o">*</span> <span class="n">log</span><span class="x">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">π</span><span class="x">))</span> <span class="o">/</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="k">else</span>
+        <span class="o">-</span><span class="nb">Inf</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p>You can use the squared exponential kernel by swapping <code class="language-plaintext highlighter-rouge">matern52_gpu</code> into <code class="language-plaintext highlighter-rouge">se_gpu</code> and <code class="language-plaintext highlighter-rouge">gram_matern52_derivative_gpu</code> into <code class="language-plaintext highlighter-rouge">gram_se_derivative_gpu</code>.
+The other routines are self-contained in <code class="language-plaintext highlighter-rouge">gpu_cuda_utils.jl</code>.</p>
+
+<h3 id="hyperparameter-gradients">Hyperparameter Gradients</h3>
+<p>For the gradients, the GPML <a class="citation" href="#rasmussen_gaussian_2006">(Rasmussen &amp; Williams, 2006)</a> book shows how to differentiate the log likelihood.
+For the record, the gradients for the kernel hypeparameters are
+\(\begin{align}
+	\nabla_{\mathbf{y}} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{K^{-1}} \mathbf{y} 
+	\\
+	\nabla_{\epsilon^2} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{y}^{\top} \, \mathbf{K}^{-1} \mathbf{K}^{-1} \, \mathbf{y} - \mathrm{tr}\left( \mathbf{K}^{-1} \right)
+	\\
+	\nabla_{\sigma^2} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{y}^{\top} \, \mathbf{K}^{-1} \mathbf{K} \mathbf{K}^{-1} \, \mathbf{y} - \mathrm{tr}\left( \mathbf{K}^{-1} \mathbf{K} \right)
+	\\
+	\nabla_{\ell^2} \log p\left(\mathbf{y} \mid \mathbf{X}, \mathbf{\theta} \right) 
+	&amp;= 
+	\mathbf{y}^{\top} \, \mathbf{K}^{-1} \frac{\partial \mathbf{K}}{\partial \ell^2} \mathbf{K}^{-1} \, \mathbf{y} - \mathrm{tr}\left( \mathbf{K}^{-1} \frac{\partial \mathbf{K}}{\partial \ell^2} \right),
+\end{align}\)
+where, clearly, there is lots of opportunities for reuse.
+Therefore, writing our own gradients should be far more efficient for GPs both in terms of time and memory.</p>
+
+<p>You can compute the gradients using <code class="language-plaintext highlighter-rouge">Zygote</code> as</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">likelihood_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="o">=</span> <span class="k">begin</span>
+    <span class="n">N</span>  <span class="o">=</span> <span class="n">size</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span>
+    <span class="n">ℓσ</span> <span class="o">=</span> <span class="n">θ</span><span class="x">[</span><span class="mi">1</span><span class="x">]</span>
+    <span class="n">ℓϵ</span> <span class="o">=</span> <span class="n">θ</span><span class="x">[</span><span class="mi">2</span><span class="x">]</span>
+    <span class="n">y</span>  <span class="o">=</span> <span class="n">cu</span><span class="x">(</span><span class="n">θ</span><span class="x">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">2</span><span class="o">+</span><span class="n">N</span><span class="x">])</span>
+    <span class="n">ℓ²</span> <span class="o">=</span> <span class="n">cu</span><span class="x">(</span><span class="n">exp</span><span class="o">.</span><span class="x">(</span><span class="n">θ</span><span class="x">[</span><span class="mi">3</span><span class="o">+</span><span class="n">N</span><span class="o">:</span><span class="k">end</span><span class="x">]</span> <span class="o">*</span> <span class="mi">2</span><span class="x">))</span>
+    <span class="n">gp_likelihood</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">exp</span><span class="x">(</span><span class="n">ℓσ</span> <span class="o">*</span> <span class="mi">2</span><span class="x">),</span> <span class="n">exp</span><span class="x">(</span><span class="n">ℓϵ</span> <span class="o">*</span> <span class="mi">2</span><span class="x">),</span> <span class="n">ℓ²</span><span class="x">)</span>
+<span class="k">end</span>
+<span class="n">Zygote</span><span class="o">.</span><span class="n">gradient</span><span class="x">(</span><span class="n">θ_</span> <span class="o">-&gt;</span> <span class="n">likelihood_gpu</span><span class="x">(</span><span class="n">X</span><span class="x">,</span> <span class="n">θ_</span><span class="x">),</span> <span class="n">θ</span><span class="x">)[</span><span class="mi">1</span><span class="x">]</span></code></pre></figure>
+
+<p>Note that the gradients with respect to <code class="language-plaintext highlighter-rouge">X_dev</code> are not implemented, but shouldn’t be too hard to do.</p>
+
+<h2 id="demonstration">Demonstration</h2>
+<p>I will now compare the GPU implementation against <code class="language-plaintext highlighter-rouge">AbtractGPs</code>.
+I will use 32-bit floating point numbers since most GPUs perform very poorly with 64-bits.
+Since I will use my poor little GTX 1050 GPU, the numbers should be much better on a proper workstation with a beefier GPU.
+To get proper performance measurements, I turned off frequency scaling and paused Youtube.
+(Imagined how bored I was during the experiments.)</p>
+
+<h3 id="numerical-accuracy">Numerical Accuracy</h3>
+<p>In terms of numerical accuracy, the GPU version is close to the result of <code class="language-plaintext highlighter-rouge">AbstractGPs</code> at 1e-4 tolerance level:</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">Test</span><span class="o">.</span><span class="nd">@testset</span> <span class="s">"GPU Gaussian process numerical accuracy test"</span> <span class="k">begin</span>
+    <span class="n">N</span>     <span class="o">=</span> <span class="mi">128</span>
+    <span class="n">D</span>     <span class="o">=</span> <span class="mi">16</span>
+    <span class="n">X</span>     <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="kt">Float32</span><span class="x">,</span> <span class="n">D</span><span class="x">,</span> <span class="n">N</span><span class="x">)</span>
+    <span class="n">X_dev</span> <span class="o">=</span> <span class="n">cu</span><span class="x">(</span><span class="n">X</span><span class="x">)</span>
+    <span class="n">θ</span>     <span class="o">=</span> <span class="n">randn</span><span class="x">(</span><span class="kt">Float32</span><span class="x">,</span> <span class="n">N</span> <span class="o">+</span> <span class="n">D</span> <span class="o">+</span> <span class="mi">2</span><span class="x">)</span>
+
+    <span class="nd">@test</span> <span class="n">likelihood_cpu</span><span class="x">(</span><span class="n">X</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="n">≈</span> <span class="n">likelihood_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span>          <span class="n">atol</span><span class="o">=</span><span class="mf">1e-4</span>
+    <span class="nd">@test</span> <span class="n">norm</span><span class="x">(</span><span class="n">gradient_cpu</span><span class="x">(</span><span class="n">X</span><span class="x">,</span> <span class="n">θ</span><span class="x">)</span> <span class="o">-</span> <span class="n">gradient_gpu</span><span class="x">(</span><span class="n">X_dev</span><span class="x">,</span> <span class="n">θ</span><span class="x">))</span> <span class="n">≈</span> <span class="mf">0.0</span>  <span class="n">atol</span><span class="o">=</span><span class="mf">1e-4</span>
+<span class="k">end</span></code></pre></figure>
+
+<h3 id="computational-performance">Computational Performance</h3>
+<p>In terms of performance, here is a execution time comparison:</p>
+<div class="center">
+<figure>
+
+  <picture>
+    <source media="(max-width: 480px)" srcset="/assets/img/gp_cuda_scaling-480.webp"></source>
+    <source media="(max-width: 800px)" srcset="/assets/img/gp_cuda_scaling-800.webp"></source>
+    <source media="(max-width: 1400px)" srcset="/assets/img/gp_cuda_scaling-1400.webp"></source>
+    <!-- Fallback to the original file -->
+    <img class="img-fluid rounded z-depth-1" src="/assets/img/gp_cuda_scaling.png" data-zoomable="">
+
+  </picture>
+
+</figure>
+
+</div>
+<p>The error bars are the 80% empirical quantiles and \(N\) is the number of datapoints.
+We can see that GPUs quickly becomes more efficient for \(N&gt;100\).
+In general, it is about 10 times faster, which is pretty good for a simple implementation without any GPU-specific optimization (not even using shared memory!).
+Since GTX 1050 is supposed to achieve 1TFLOPS and most modern CPUs achieve around 200GFLOPS, this is close to the most we can get.</p>
+
+<h3 id="realistic-example">Realistic Example</h3>
+<p>The <a href="https://github.com/Red-Portal/CUDAGaussianProcessExample.jl/blob/master/main.jl" target="_blank" rel="noopener noreferrer">main.jl</a> file in the repository contains a realistic example with predictions.
+I performed MAP-II hyperparameter optimization using <a href="https://github.com/JuliaNLSolvers/Optim.jl/" target="_blank" rel="noopener noreferrer">Optim.jl</a> on the Boston housing dataset.
+Here are the results:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌ Info: MAP-II Hyperparameter Optimization Result
+│   likelihood_before = -544.3303199616416
+│   likelihood_after = -116.86849745187607
+│   rmse_before = 0.60338885f0
+│   rmse_after = 0.3102568f0
+│   lpd_before = -0.8926057396811591
+└   lpd_after = -0.16185267732364805
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">before</code> is the initial hyperparameters used without optimization and <code class="language-plaintext highlighter-rouge">after</code> is the result of MAP-II.
+We can see that everything is working in order.</p>
+
+<h3 id="cholesky-fail">Cholesky Fail</h3>
+<p>When the Cholesky fails, the current implementation does not throw.
+Instead, it spits a <code class="language-plaintext highlighter-rouge">-Inf</code> for the likelihood and <code class="language-plaintext highlighter-rouge">CUDA.zeros</code> arrays for the gradients.</p>
+
+<h3 id="fixing-zygote-for-differentiating-cholesky-with-cuda">Fixing Zygote for Differentiating <code class="language-plaintext highlighter-rouge">Cholesky</code> with CUDA</h3>
+
+<p><strong>Update: this has been <a href="https://github.com/JuliaDiff/ChainRules.jl/pull/630" target="_blank" rel="noopener noreferrer">fixed </a> by <a href="https://github.com/sethaxen" target="_blank" rel="noopener noreferrer">sethaxen</a>.</strong>
+<strong>See also the issues at <a href="https://github.com/JuliaDiff/ChainRules.jl/issues/629" target="_blank" rel="noopener noreferrer">ChainRules.jl</a>, <a href="https://github.com/FluxML/Zygote.jl/issues/1210" target="_blank" rel="noopener noreferrer">Zygote.jl</a></strong></p>
+
+<p>While doing this, I ran into a bug that prevents <code class="language-plaintext highlighter-rouge">Cholesky</code> being differentiated by <code class="language-plaintext highlighter-rouge">Zygote</code>, which I <a href="https://github.com/FluxML/Zygote.jl/issues/1210" target="_blank" rel="noopener noreferrer">reported</a>.
+A quick fix is to use the following snippet:</p>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="nd">@eval</span> <span class="n">Zygote</span> <span class="k">begin</span>
+    <span class="k">import</span> <span class="n">CUDA</span>
+    <span class="nd">@adjoint</span> <span class="k">function</span><span class="nf"> cholesky</span><span class="x">(</span><span class="n">Σ</span><span class="o">::</span><span class="n">CUDA</span><span class="o">.</span><span class="n">CuArray</span><span class="x">;</span> <span class="n">check</span> <span class="o">=</span> <span class="nb">true</span><span class="x">)</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">cholesky</span><span class="x">(</span><span class="n">Σ</span><span class="x">,</span> <span class="n">check</span> <span class="o">=</span> <span class="n">check</span><span class="x">)</span>
+        <span class="n">C</span><span class="x">,</span> <span class="k">function</span><span class="nf"> </span><span class="o">(Δ::</span><span class="kt">NamedTuple</span><span class="x">)</span>
+            <span class="n">issuccess</span><span class="x">(</span><span class="n">C</span><span class="x">)</span> <span class="o">||</span> <span class="n">throw</span><span class="x">(</span><span class="kt">PosDefException</span><span class="x">(</span><span class="n">C</span><span class="o">.</span><span class="n">info</span><span class="x">))</span>
+            <span class="n">U</span><span class="x">,</span> <span class="n">Ū</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">U</span><span class="x">,</span> <span class="n">Δ</span><span class="o">.</span><span class="n">factors</span>
+
+            <span class="n">U_tru</span> <span class="o">=</span> <span class="n">triu</span><span class="x">(</span><span class="n">U</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+            <span class="n">Ū_tru</span> <span class="o">=</span> <span class="n">triu</span><span class="x">(</span><span class="n">Ū</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">similar</span><span class="x">(</span><span class="n">U</span><span class="o">.</span><span class="n">data</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">mul!</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">,</span> <span class="n">Ū_tru</span><span class="x">,</span> <span class="n">U_tru</span><span class="err">'</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">copytri!</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">,</span> <span class="sc">'U'</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">ldiv!</span><span class="x">(</span><span class="n">U</span><span class="x">,</span> <span class="n">Σ̄</span><span class="x">)</span>
+            <span class="n">Σ̄</span> <span class="o">=</span> <span class="n">CUDA</span><span class="o">.</span><span class="n">CUBLAS</span><span class="o">.</span><span class="n">trsm!</span><span class="x">(</span><span class="sc">'R'</span><span class="x">,</span> <span class="sc">'U'</span><span class="x">,</span> <span class="sc">'T'</span><span class="x">,</span> <span class="sc">'N'</span><span class="x">,</span> <span class="n">one</span><span class="x">(</span><span class="n">eltype</span><span class="x">(</span><span class="n">Σ</span><span class="x">)),</span> <span class="n">U</span><span class="o">.</span><span class="n">data</span><span class="x">,</span> <span class="n">Σ̄</span><span class="x">)</span>
+            <span class="n">Σ̄</span><span class="x">[</span><span class="n">diagind</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">)]</span> <span class="o">./=</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="x">(</span><span class="kt">UpperTriangular</span><span class="x">(</span><span class="n">Σ̄</span><span class="x">),)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span></code></pre></figure>
+
+<p><strong>Update: this has been <a href="https://github.com/JuliaGPU/CUDA.jl/pull/1538" target="_blank" rel="noopener noreferrer">fixed</a> by myself</strong> <br>
+The weird part of my solution here is the two calls to <code class="language-plaintext highlighter-rouge">triu</code>, which <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/#LinearAlgebra.triu" target="_blank" rel="noopener noreferrer">create</a> a normal <code class="language-plaintext highlighter-rouge">Matrix</code> that is upper triangular, in contrast to the <code class="language-plaintext highlighter-rouge">UpperTriangular</code> adaptor.
+This is necessary because, currently, multiplying two <code class="language-plaintext highlighter-rouge">UpperTriangular</code> matrices on the GPU is extremely slow.
+Running the profiler seems to show that there is a weird device memory copy somewhere that takes forever, but I didn’t pursue the matter further.</p>
+
+<h3 id="system-information">System Information</h3>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">julia</span><span class="o">&gt;</span> <span class="n">versioninfo</span><span class="x">()</span>
+<span class="n">Julia</span> <span class="n">Version</span> <span class="mf">1.7</span><span class="o">.</span><span class="mi">2</span>
+<span class="n">Commit</span> <span class="n">bf53498635</span> <span class="x">(</span><span class="mi">2022</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">06</span> <span class="mi">15</span><span class="o">:</span><span class="mi">21</span> <span class="kt">UTC</span><span class="x">)</span>
+<span class="n">Platform</span> <span class="n">Info</span><span class="o">:</span>
+  <span class="n">OS</span><span class="o">:</span> <span class="n">Linux</span> <span class="x">(</span><span class="n">x86_64</span><span class="o">-</span><span class="n">pc</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="x">)</span>
+  <span class="n">CPU</span><span class="o">:</span> <span class="n">Intel</span><span class="x">(</span><span class="n">R</span><span class="x">)</span> <span class="n">Core</span><span class="x">(</span><span class="n">TM</span><span class="x">)</span> <span class="n">i7</span><span class="o">-</span><span class="mi">7700</span><span class="n">HQ</span> <span class="n">CPU</span> <span class="err">@</span> <span class="mf">2.80</span><span class="n">GHz</span>
+  <span class="n">WORD_SIZE</span><span class="o">:</span> <span class="mi">64</span>
+  <span class="n">LIBM</span><span class="o">:</span> <span class="n">libopenlibm</span>
+  <span class="n">LLVM</span><span class="o">:</span> <span class="n">libLLVM</span><span class="o">-</span><span class="mf">12.0</span><span class="o">.</span><span class="mi">1</span> <span class="x">(</span><span class="n">ORCJIT</span><span class="x">,</span> <span class="n">skylake</span><span class="x">)</span>
+<span class="n">Environment</span><span class="o">:</span>
+  <span class="n">JULIA_NUM_THREADS</span> <span class="o">=</span> <span class="mi">8</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-julia" data-lang="julia"><span class="n">julia</span><span class="o">&gt;</span> <span class="n">CUDA</span><span class="o">.</span><span class="n">versioninfo</span><span class="x">()</span>
+<span class="n">CUDA</span> <span class="n">toolkit</span> <span class="mf">11.6</span><span class="x">,</span> <span class="n">artifact</span> <span class="n">installation</span>
+<span class="n">NVIDIA</span> <span class="n">driver</span> <span class="mf">510.60</span><span class="o">.</span><span class="mi">2</span><span class="x">,</span> <span class="k">for</span> <span class="n">CUDA</span> <span class="mf">11.6</span>
+<span class="n">CUDA</span> <span class="n">driver</span> <span class="mf">11.6</span>
+
+<span class="n">Libraries</span><span class="o">:</span> 
+<span class="o">-</span> <span class="n">CUBLAS</span><span class="o">:</span> <span class="mf">11.8</span><span class="o">.</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">CURAND</span><span class="o">:</span> <span class="mf">10.2</span><span class="o">.</span><span class="mi">9</span>
+<span class="o">-</span> <span class="n">CUFFT</span><span class="o">:</span> <span class="mf">10.7</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">-</span> <span class="n">CUSOLVER</span><span class="o">:</span> <span class="mf">11.3</span><span class="o">.</span><span class="mi">2</span>
+<span class="o">-</span> <span class="n">CUSPARSE</span><span class="o">:</span> <span class="mf">11.7</span><span class="o">.</span><span class="mi">1</span>
+<span class="o">-</span> <span class="n">CUPTI</span><span class="o">:</span> <span class="mf">16.0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">-</span> <span class="n">NVML</span><span class="o">:</span> <span class="mf">11.0</span><span class="o">.</span><span class="mi">0</span><span class="o">+</span><span class="mf">510.60</span><span class="o">.</span><span class="mi">2</span></code></pre></figure>
+
+<h2 id="references">References</h2>
+<ol class="bibliography"><li>
+<!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="rasmussen_gaussian_2006">
+        
+          <!-- Title -->
+          <div class="title"><b>Gaussian Processes for Machine Learning</b></div>
+          <!-- Author -->
+          <div class="author">Carl Edward Rasmussen, and Christopher K. I. Williams.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            2006
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li></ol>
+
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>
+
+
+  </article>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2025 Kyurae  Kim. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha256-l/1pMF/+J4TThfgARS6KwWrk/egwuVvhRzfLAMQ6Ds4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha256-SyTu6CwrfOhaznYZPoolVw2rxoY7lKYKQvqbtqN93HI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="/assets/js/zoom.js"></script><!-- Load Common JS -->
+  <script src="/assets/js/common.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      loader: {load: ['[tex]/upgreek']},
+      tex: {
+        tags: 'ams',
+        packages: {'[+]': ['upgreek']}
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BYR4L4SWHW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-BYR4L4SWHW');
+  </script>
+  </body>
+</html>
+

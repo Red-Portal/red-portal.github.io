@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kyurae Kim | blog</title>
+    <title>Kyurae Kim | Being Schmidhubered on Deep Learning and Flat Minimas</title>
     <meta name="author" content="Kyurae  Kim" />
     <meta name="description" content="Kyurae Kim's blog.
 " />
@@ -32,7 +32,7 @@
     <link rel="shortcut icon" href="/assets/img/favicon.jpg"/>
     <!--  -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://red-portal.github.io/blog/">
+    <link rel="canonical" href="https://red-portal.github.io/blog/2022/flat_minima_schmidhuber/">
     
     <!-- Dark Mode -->
     
@@ -72,7 +72,7 @@
               
               <!-- Blog -->
               <li class="nav-item active">
-                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/blog/">blog</a>
               </li>
 
               <!-- Other pages -->
@@ -81,8 +81,8 @@
               </li>
 
               <!-- Toogle theme mode -->
-              <div class = "toggle-container">
-                <a id = "light-toggle">
+              <div class="toggle-container">
+                <a id="light-toggle">
                   <i class="fas fa-moon"></i>
                   <i class="fas fa-sun"></i>
                 </a>
@@ -95,134 +95,122 @@
 
     <!-- Content -->
     <div class="container mt-5">
-      <div class="post">
+      <!-- _layouts/post.html -->
 
-  <div class="header-bar">
-    <!-- <h2>Kyurae Kim's Blog</h1> -->
-    <h2>Stuff that didn't end up in a paper</h2>
-  </div>
+<div class="post">
 
-
-  <ul class="post-list">
-    
-
-    
-    
-    
-    
-
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/2022/red_herring/">Uncertainty Quantification is the Red Herring of Bayesian Machine Learning</a>
-        
-      </h3>
-      <p></p>
-      <p class="post-meta"> 4 min read &nbsp; &middot; &nbsp;
-        December 11, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
-
+  <header class="post-header">
+    <h1 class="post-title">Being Schmidhubered on Deep Learning and Flat Minimas</h1>
+    <p class="post-meta">October 4, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+        ·  
+        <a href="/blog/tag/DL">
+          <i class="fas fa-hashtag fa-sm"></i> DL</a>  
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/Bayes">
-              <i class="fas fa-hashtag fa-sm"></i> Bayes</a> &nbsp;
-              
+        ·  
+        <a href="/blog/category/DL">
+          <i class="fas fa-tag fa-sm"></i> DL</a>  
           
 
-          
     </p>
-    </li>
+  </header>
 
-    
+  <article class="post-content">
+    <p>Until very recently, the incredible generalization capabilities of deep neural networks have been attributed to <em>flat minimas</em>.
+That is, “flat minimas” generalize better because of the intuitive explanation that flatter minimas are more robust to perturbation (train dataset sampling).
+For some time, this discovery has been attributed to <a class="citation" href="#keskar_largebatch_2017">(Keskar et al., 2017)</a>, often accompanying their sketch of the intuition.</p>
 
-    
-    
-    
-    
+<p>Although this “intuitive” explanation has been somewhat scientifically disputed multiple times until now.
+I do not now where the scientific concensus is now on this subject.
+Because of this, I have never got too deep into this topic, and I only knew the attribution to Keskar <em>et al.</em>
+However, it turned out that J. Schmidhuber and S. Hochreiter came up with this idea in… 1994!
+Hell, they even have a paper named “Flat minima” <a class="citation" href="#hochreiter_flat_1997">(Hochreiter &amp; Schmidhuber, 1997)</a>.
+Even better, one of their paper on the topic had been presented at NIPS’94 <a class="citation" href="#hochreiter_simplifying_1994">(Hochreiter &amp; Schmidhuber, 1994)</a>.
+To me personally, this sets a whole new standard on being <em>Schmidhubered</em>…
+(Fortunately though, the two papers by Schmidhuber co. did and still do get properly cited.)</p>
 
-    <li>
-      <h3>
+<h2 id="references">References</h2>
+<ol class="bibliography">
+<li>
+<!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="keskar_largebatch_2017">
         
-          <a class="post-title" href="/blog/2022/flat_minima_schmidhuber/">Being Schmidhubered on Deep Learning and Flat Minimas</a>
+          <!-- Title -->
+          <div class="title"><b>On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</b></div>
+          <!-- Author -->
+          <div class="author">Nitish Shirish Keskar, Dheevatsa Mudigere, Jorge Nocedal, Mikhail Smelyanskiy, and Ping Tak Peter Tang.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Proceedings of the International conference on learning representations</em>, Feb 2017
+          </div>
         
-      </h3>
-      <p></p>
-      <p class="post-meta"> 3 min read &nbsp; &middot; &nbsp;
-        October 4, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
 
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/DL">
-              <i class="fas fa-hashtag fa-sm"></i> DL</a> &nbsp;
-              
-          
+        </div>
+</li>
+<li>
+<!-- _layouts/bib.html -->
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/DL">
-              <i class="fas fa-tag fa-sm"></i> DL</a> &nbsp;
-              
-          
-    </p>
-    </li>
-
-    
-
-    
-    
-    
-    
-
-    <li>
-      <h3>
+        <!-- Entry bib key -->
+        <div id="hochreiter_flat_1997">
         
-          <a class="post-title" href="/blog/2022/was_charles_stein_bayesian/">Was Charles Stein a Bayesian?</a>
+          <!-- Title -->
+          <div class="title"><b>Flat Minima</b></div>
+          <!-- Author -->
+          <div class="author">Sepp Hochreiter, and Jürgen Schmidhuber.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Neural Computation</em>, Jan 1997
+          </div>
         
-      </h3>
-      <p></p>
-      <p class="post-meta"> 16 min read &nbsp; &middot; &nbsp;
-        July 11, 2022
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
 
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/tag/Bayes">
-              <i class="fas fa-hashtag fa-sm"></i> Bayes</a> &nbsp;
-              
-          
+        </div>
+</li>
+<li>
+<!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="hochreiter_simplifying_1994">
+        
+          <!-- Title -->
+          <div class="title"><b>Simplifying Neural Nets by Discovering Flat Minima</b></div>
+          <!-- Author -->
+          <div class="author">Sepp Hochreiter, and Jürgen Schmidhuber.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Advances in Neural Information Processing Systems</em>, Jan 1994
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
 
           
-    </p>
-    </li>
+        </div>
+</li>
+</ol>
 
-    
-  </ul>
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>
 
-  <nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li><li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
+
+  </article>
 
 </div>
 
@@ -231,7 +219,7 @@
     <!-- Footer -->    
     <footer class="fixed-bottom">
       <div class="container mt-0">
-        &copy; Copyright 2025 Kyurae  Kim. Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
+        © Copyright 2025 Kyurae  Kim. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>.
 
       </div>
     </footer>
