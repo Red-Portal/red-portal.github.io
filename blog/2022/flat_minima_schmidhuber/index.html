@@ -2,16 +2,17 @@
 <html lang="en">
 
   <!-- Head -->
-  <head><meta http-equiv="refresh" content="3; url=https://red-portal.github.io/" />    <!-- Metadata, OpenGraph and Schema.org -->
+  <head>    <!-- Metadata, OpenGraph and Schema.org -->
     
 
     <!-- Standard metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Kyurae Kim | Page not found</title>
+    <title>Kyurae Kim | Being Schmidhubered on Deep Learning and Flat Minimas</title>
     <meta name="author" content="Kyurae  Kim" />
-    <meta name="description" content="Looks like there has been a mistake. Nothing exists here." />
+    <meta name="description" content="Kyurae Kim's blog.
+" />
 
 
     <!-- Bootstrap & MDB -->
@@ -31,7 +32,7 @@
     <link rel="shortcut icon" href="/assets/img/favicon.jpg"/>
     <!--  -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://red-portal.github.io/404.html">
+    <link rel="canonical" href="https://red-portal.github.io/blog/2022/flat_minima_schmidhuber/">
     
     <!-- Dark Mode -->
     
@@ -70,7 +71,7 @@
               </li>
               
               <!-- Blog -->
-              <li class="nav-item ">
+              <li class="nav-item active">
                 <a class="nav-link" href="/blog/">blog</a>
               </li>
 
@@ -94,20 +95,124 @@
 
     <!-- Content -->
     <div class="container mt-5">
-      <!-- page.html -->
-        <div class="post">
+      <!-- _layouts/post.html -->
 
-          <header class="post-header">
-            <h1 class="post-title">Page not found</h1>
-            <p class="post-description">Looks like there has been a mistake. Nothing exists here.</p>
-          </header>
+<div class="post">
 
-          <article>
-            <p>You will be redirected to the main page within 3 seconds. If not redirected, please click <a href="https://red-portal.github.io/">here</a>.</p>
+  <header class="post-header">
+    <h1 class="post-title">Being Schmidhubered on Deep Learning and Flat Minimas</h1>
+    <p class="post-meta">October 4, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+        ·  
+        <a href="/blog/tag/DL">
+          <i class="fas fa-hashtag fa-sm"></i> DL</a>  
+          
+        ·  
+        <a href="/blog/category/DL">
+          <i class="fas fa-tag fa-sm"></i> DL</a>  
+          
 
-          </article>
+    </p>
+  </header>
 
+  <article class="post-content">
+    <p>Until very recently, the incredible generalization capabilities of deep neural networks have been attributed to <em>flat minimas</em>.
+That is, “flat minimas” generalize better because of the intuitive explanation that flatter minimas are more robust to perturbation (train dataset sampling).
+For some time, this discovery has been attributed to <a class="citation" href="#keskar_largebatch_2017">(Keskar et al., 2017)</a>, often accompanying their sketch of the intuition.</p>
+
+<p>Although this “intuitive” explanation has been somewhat scientifically disputed multiple times until now.
+I do not now where the scientific concensus is now on this subject.
+Because of this, I have never got too deep into this topic, and I only knew the attribution to Keskar <em>et al.</em>
+However, it turned out that J. Schmidhuber and S. Hochreiter came up with this idea in… 1994!
+Hell, they even have a paper named “Flat minima” <a class="citation" href="#hochreiter_flat_1997">(Hochreiter &amp; Schmidhuber, 1997)</a>.
+Even better, one of their paper on the topic had been presented at NIPS’94 <a class="citation" href="#hochreiter_simplifying_1994">(Hochreiter &amp; Schmidhuber, 1994)</a>.
+To me personally, this sets a whole new standard on being <em>Schmidhubered</em>…
+(Fortunately though, the two papers by Schmidhuber co. did and still do get properly cited.)</p>
+
+<h2 id="references">References</h2>
+<ol class="bibliography">
+<li>
+<!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="keskar_largebatch_2017">
+        
+          <!-- Title -->
+          <div class="title"><b>On Large-Batch Training for Deep Learning: Generalization Gap and Sharp Minima</b></div>
+          <!-- Author -->
+          <div class="author">Nitish Shirish Keskar, Dheevatsa Mudigere, Jorge Nocedal, Mikhail Smelyanskiy, and Ping Tak Peter Tang.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Proceedings of the International conference on learning representations</em>, Feb 2017
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
         </div>
+</li>
+<li>
+<!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="hochreiter_flat_1997">
+        
+          <!-- Title -->
+          <div class="title"><b>Flat Minima</b></div>
+          <!-- Author -->
+          <div class="author">Sepp Hochreiter, and Jürgen Schmidhuber.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>Neural Computation</em>, Jan 1997
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+<li>
+<!-- _layouts/bib.html -->
+
+        <!-- Entry bib key -->
+        <div id="hochreiter_simplifying_1994">
+        
+          <!-- Title -->
+          <div class="title"><b>Simplifying Neural Nets by Discovering Flat Minima</b></div>
+          <!-- Author -->
+          <div class="author">Sepp Hochreiter, and Jürgen Schmidhuber.
+          </div>
+
+          <!-- Journal/Book title and date -->
+          <div class="periodical">
+            <em>In Advances in Neural Information Processing Systems</em>, Jan 1994
+          </div>
+        
+          <!-- Links/Buttons -->
+          <div class="links">
+          </div>
+
+          
+        </div>
+</li>
+</ol>
+
+<script src="https://utteranc.es/client.js" repo="Red-Portal/red-portal.github.io" issue-term="title" theme="preferred-color-scheme" crossorigin="anonymous" async="">
+</script>
+
+
+  </article>
+
+</div>
 
     </div>
 
