@@ -6,7 +6,7 @@ subtitle:
 
 profile:
   align: right
-  image: profile_shock_diffuse.png
+  image: profile.png
 
 news: true  # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
